@@ -178,126 +178,10 @@
 &gt;&gt;&gt;while n &lt;= 99:    
    L.append(n)    
    n=n+2    
-</code></pre><h2 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h2><p><strong>切片可以轻松的取一个list或tuple的部分元素</strong><br>比如&gt;&gt;&gt;L=[‘A’,’B’,’C’]<br>取前三个元素:<br>你可能会想到:&gt;&gt;&gt;[L[0],L[1],L[2]]<br>切片方法：&gt;&gt;&gt;L[0:3]<br>L[0:3]表示从索引0开始取，直到索引3为止，但是不包括索引3。<br><strong>切片的其它表达形式</strong><br>比如&gt;&gt;&gt;L[:]就可以原样复制一个list<br>比如&gt;&gt;&gt;L[::5]表示对一个list每5个取1个<br>比如对一个tuple L=(1,2,3,4,5)效果等同于对list的操作<br>比如字符串L=’ABCDEF’也可以看成是一种list。&gt;&gt;&gt;L[:3]得到的结果是’ABC’<br><strong>切片操作一定程度上可以减少很多循环的麻烦</strong>    </p>
-<h2 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h2><p><strong>什么是迭代？迭代就是可以通过for循环来遍历这个list或者tuple</strong>    </p>
-<p><strong>对于一个dict</strong> (第一种情况:迭代的是key）</p>
-<pre><code>&gt;&gt;&gt;d={&apos;a&apos;: 1, &apos;b&apos;: 2, &apos;c&apos;: 3}    
-&gt;&gt;&gt;for key in d:    
-    print(key)   
-</code></pre><p><strong>输出结果</strong>    </p>
-<pre><code>a    
-c    
-b    
-</code></pre><p><strong>对于一个dict</strong> (第二种情况:迭代的是value）         </p>
-<pre><code>&gt;&gt;&gt;d={&apos;a&apos;: 1, &apos;b&apos;: 2, &apos;c&apos;: 3}    
-&gt;&gt;&gt;for value in d.values():    
-    print(value)    
-</code></pre><p><strong>输出结果</strong>    </p>
-<pre><code>1    
-2    
-3     
-</code></pre><p><strong>对于一个dict</strong> (第三种情况:迭代的是value）         </p>
-<pre><code>&gt;&gt;&gt;d={&apos;a&apos;: 1, &apos;b&apos;: 2, &apos;c&apos;: 3}    
-&gt;&gt;&gt;for k,v in d.items():    
-    print(k,&apos;:&apos;,v)    
-</code></pre><p><strong>输出结果</strong>    </p>
-<pre><code>a : 1    
-b : 2    
-c : 3     
-</code></pre><p><strong>当然，字符串也可以进行迭代</strong>     </p>
-<pre><code>&gt;&gt;&gt; for ch in &apos;ABC&apos;    
-        print(ch)    
-</code></pre><p><strong>输出结果</strong>    </p>
-<pre><code>A    
-B    
-C    
-</code></pre><p><strong>任何可迭代对象都可以作用于for循环，包括我们自定义的数据类型，只要符合迭代条件，就可以使用for循环</strong>    </p>
-<h2 id="列表生成式"><a href="#列表生成式" class="headerlink" title="列表生成式"></a>列表生成式</h2><p><strong>什么是列表生成式？列表生成式是Python内置的非常简单却强大的可以用来创建list的生成式</strong>    </p>
-<p><strong>比如要生成一个list[1, 2, 3, 4, 5]</strong>    </p>
-<pre><code>&gt;&gt;&gt;list(range(1,6))
-[1, 2, 3, 4, 5]    
-</code></pre><p><strong>比如要生成一个list[1, 4, 9, 16, 25,…,100 ]</strong> </p>
-<pre><code>&gt;&gt;&gt;[x*x for x in range(1.101)]    
-[1, 4, 9, 16, 25,...,100 ]    
-</code></pre><p><strong>列表生成式也可以用两个变量生成list</strong>    </p>
-<pre><code>&gt;&gt;&gt; d = {&apos;x&apos;: &apos;A&apos;, &apos;y&apos;: &apos;B&apos;, &apos;z&apos;: &apos;C&apos; }    
-&gt;&gt;&gt; [k + &apos;=&apos; + v for k, v in d.items()]    
-[&apos;y=B&apos;, &apos;x=A&apos;, &apos;z=C&apos;]    
-</code></pre><p><strong>一个有趣的操作</strong><br><em>把list中所有的字符串变成小写</em>     </p>
-<pre><code>&gt;&gt;&gt; L = [&apos;Hello&apos;, &apos;World&apos;, &apos;IBM&apos;, &apos;Apple&apos;]    
-&gt;&gt;&gt; [s.lower() for s in L]    
-[&apos;hello&apos;, &apos;world&apos;, &apos;ibm&apos;, &apos;apple&apos;]    
-</code></pre><p><strong>通过列表生成式，可以快速生成一个list</strong>    </p>
-<h2 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h2><p><strong>什么是生成器？只要把一个列表生成式的[]改成（）就创建了一个生成器</strong>    </p>
-<p>比如    </p>
-<pre><code>&gt;&gt;&gt; L = [x * x for x in range(10)]    
-&gt;&gt;&gt; L    
-[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]    
-&gt;&gt;&gt; g = (x * x for x in range(10))    
-&gt;&gt;&gt; g    
-&lt;generator object &lt;genexpr&gt; at 0x1022ef630&gt;    
-</code></pre><p><strong>那么我们要怎样操作才能得到生成器中的每一个元素呢？</strong><br><em>使用next()函数</em>    </p>
-<pre><code>&gt;&gt;&gt; next(g)    
-0    
-&gt;&gt;&gt; next(g)     
-1    
-&gt;&gt;&gt; next(g)     
-4     
-...    
-&gt;&gt;&gt; next(g)    
-81    
-&gt;&gt;&gt; next(g)     
-Traceback (most recent call last):    
-   File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;    
-StopIteration
-</code></pre><p> <strong>由此我们知道，generator保存的是算法，每次调用next(g)，就计算出g的下一个元素的值，直到计算到最后一个元素，没有更多的元素时，抛出StopIteration的错误。</strong>    </p>
-<p><strong>当然我们依然可以用迭代的方法来更方便的获得这些返回值</strong>    </p>
-<pre><code>&gt;&gt;&gt; g = (x * x for x in range(10))   
-&gt;&gt;&gt; for n in g    
-        print(n)    
-0    
-1    
-...    
-81    
-</code></pre><h2 id="把一个函数改成下边的生成器"><a href="#把一个函数改成下边的生成器" class="headerlink" title="把一个函数改成下边的生成器"></a>把一个函数改成下边的生成器</h2><pre><code>def odd():    
-    print(&apos;step 1&apos;)   
-    yield 1    
-    print(&apos;step 2&apos;)   
-     yield(3)   
-</code></pre><p><strong>调用</strong>  </p>
-<pre><code>&gt;&gt;&gt; o=odd()   
-&gt;&gt;&gt;next(o)    
-step 1    
-1    
-&gt;&gt;&gt;next(o)    
-step 2    
-2    
-...    
-</code></pre><h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><p><strong>判断一个对象是否是Iterable对象</strong>    </p>
-<pre><code>&gt;&gt;&gt; from collections import Iterable    
-&gt;&gt;&gt; isinstance([], Iterable)    
-True    
-&gt;&gt;&gt; isinstance({}, Iterable)    
-True    
-&gt;&gt;&gt; isinstance(&apos;abc&apos;, Iterable)    
-True    
-&gt;&gt;&gt; isinstance((x for x in range(10)), Iterable)     
-True    
-&gt;&gt;&gt; isinstance(100, Iterable)    
-False    
-</code></pre><p><strong>判断一个对象是否是Iterator对象</strong>    </p>
-<pre><code>&gt;&gt;&gt; from collections import Iterator    
-&gt;&gt;&gt; isinstance((x for x in range(10)), Iterator)    
-True    
-&gt;&gt;&gt; isinstance([], Iterator)   
-False     
-&gt;&gt;&gt; isinstance({}, Iterator)    
-False    
-&gt;&gt;&gt; isinstance(&apos;abc&apos;, Iterator)    
-False     
-</code></pre><p><strong>凡是可作用于for循环的对象都是Iterable类型</strong><br><strong>凡是可作用于next()函数的对象都是Iterator类型，它们表示一个惰性计算的序列</strong>    </p>
-<h2 id="多多搜索-多多益善"><a href="#多多搜索-多多益善" class="headerlink" title="多多搜索 多多益善"></a><em>多多搜索 多多益善</em></h2><p><img src="http://img21.mtime.cn/mg/2012/01/18/044616.22637048.jpg" alt="图">              </p>
-
+</code></pre><h2 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h2>
+        
+          <a class="article-more-a" href="/2017/07/07/python高级特性/#more">more >></a>
+        
       
 
       
@@ -346,22 +230,10 @@ False
       
         <h2 id="标点符号"><a href="#标点符号" class="headerlink" title="标点符号"></a><strong>标点符号</strong></h2><h6 id="分号"><a href="#分号" class="headerlink" title="分号"></a><strong>分号</strong></h6><p>；</p>
 <p>分号的使用不像C语言中的分号的使用，不需要在行尾加上分号。    </p>
-<h6 id="逗号和冒号"><a href="#逗号和冒号" class="headerlink" title="逗号和冒号"></a><strong>逗号和冒号</strong></h6><p>，和 ：    </p>
-<p>逗号和冒号后边都要紧跟一个空格，比如x, y = y, x<br>其中在语句末尾的时候冒号后边不需要跟上一个空格    </p>
-<h6 id="引号"><a href="#引号" class="headerlink" title="引号"></a><strong>引号</strong></h6><p>‘ ‘ 和 “ “    </p>
-<p>单引号和双引号都可以用来表示一个字符串变量，比如a=’xyz’和a=”xyz”    </p>
-<p>我觉得之所以单引号和双引号都可以用来表示一个变量是因为它们的功能是可以互补的<br>比如this is bob’s book 这个句子用来写成字符串的话：<br>a=’this is bob\’s book’ 因为分号里边存在分号，所以要用到转义字符\,如果一个字符串中有很多单引号的话就看着很不美观了，所以可以这样：<br>a=”this is bob’s book” 用上双引号看着好多了。    </p>
-<h2 id="括号"><a href="#括号" class="headerlink" title="括号"></a><strong>括号</strong></h2><p>()     </p>
-<p>圆括号可以实现隐式行连接，比如a=(‘这是一个很长的 ‘<br>‘字符串 ‘)    </p>
-<p>不要在返回语句或条件语句中使用括号. 不过在元组两边使用括号是可以的.    </p>
-<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a><strong>注释</strong></h2><p>对于复杂的操作，应该在其操作开始前写上若干行注释。对于不是一目了然的代码，应在其行尾添加注释。<br>注释以#开头，注释应该离代码至少两个空格。    </p>
-<h2 id="空格"><a href="#空格" class="headerlink" title="空格"></a><strong>空格</strong></h2><p>括号内不要有空格。<br>在二元操作符两边都加上一个空格。<br>当等号用于指示关键字参数或默认参数值时，不要在其两侧使用空格。<br>比如def a(real, imag=0.0)(一个函数）<br>在参数列表、索引或切片的左括号前不要加空格。比如dict[1,2,3]    </p>
-<h2 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a><strong>缩进</strong></h2><p>用四个空格来缩进代码。一些写脚本软件要进行设置。    </p>
-<h2 id="语句"><a href="#语句" class="headerlink" title="语句"></a><strong>语句</strong></h2><p>对于if语句，如果在没有else语句的情况下，可以把if语句冒号后的语句放在一行。比如if a: fun(b)    </p>
-<h2 id="使用with语句"><a href="#使用with语句" class="headerlink" title="使用with语句"></a><strong>使用with语句</strong></h2><p>python内置了一种打开文件并及时关闭文件的方法：<br>with open(‘/path/to/file’, ‘r’) as f:    </p>
-<h2 id="多多搜索-多多益善"><a href="#多多搜索-多多益善" class="headerlink" title="多多搜索 多多益善"></a><em>多多搜索 多多益善</em></h2><p><img src="http://img21.mtime.cn/mg/2012/01/18/044616.22637048.jpg" alt="图">   </p>
-<pre><code>&apos; 
-</code></pre>
+<h6 id="逗号和冒号"><a href="#逗号和冒号" class="headerlink" title="逗号和冒号"></a><strong>逗号和冒号</strong></h6><p>，和 ：<br>
+        
+          <a class="article-more-a" href="/2017/07/07/python编码规范/#more">more >></a>
+        
       
 
       
@@ -409,10 +281,10 @@ False
     <div class="article-entry" itemprop="articleBody">
       
         <p><strong>小仙女初来博客 </strong>   </p>
-<p><strong>好像也没有什么想说的了…</strong>    </p>
-<p>希望我在学习的道路上总能见到最美的雨后彩虹~<br>希望我们能够共同努力 一起进步~    </p>
-<p><img src="http://img5.duitang.com/uploads/item/201407/07/20140707201039_hiBLZ.jpeg" alt="Alt Text"></p>
-
+<p><strong>好像也没有什么想说的了…</strong><br>
+        
+          <a class="article-more-a" href="/2017/07/06/我的第一篇博客/#more">more >></a>
+        
       
 
       
@@ -460,13 +332,10 @@ False
     <div class="article-entry" itemprop="articleBody">
       
         <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h4 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div><div class="line">```     </div><div class="line"></div><div class="line">More info: [Server](https://hexo.io/docs/server.html)</div><div class="line"></div><div class="line"><span class="comment">### Generate static files</span></div><div class="line"></div><div class="line">``` bash</div><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h4 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h4>
+        
+          <a class="article-more-a" href="/2017/07/06/hello-world/#more">more >></a>
+        
       
 
       
