@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>更优雅的Python | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="##交换两个变量的值     1.      &amp;gt;&amp;gt;&amp;gt;a=1 2.      &amp;gt;&amp;gt;&amp;gt;b=2 3.      &amp;gt;&amp;gt;&amp;gt;t=a 4.      &amp;gt;&amp;gt;&amp;gt;a=b 5.      &amp;gt;&amp;gt;&amp;gt;b=t 6.      &amp;gt;&amp;gt;&amp;gt;a 7.      2 8.      &amp;gt;&amp;gt;&amp;gt;b 9.      1">
+  <meta name="description" content="交换两个变量的值1.      &amp;gt;&amp;gt;&amp;gt;a=1 2.      &amp;gt;&amp;gt;&amp;gt;b=2 3.      &amp;gt;&amp;gt;&amp;gt;t=a 4.      &amp;gt;&amp;gt;&amp;gt;a=b 5.      &amp;gt;&amp;gt;&amp;gt;b=t 6.      &amp;gt;&amp;gt;&amp;gt;a 7.      2 8.      &amp;gt;&amp;gt;&amp;gt;b 9.      1       更p">
 <meta property="og:type" content="article">
 <meta property="og:title" content="更优雅的Python">
 <meta property="og:url" content="http://yoursite.com/2017/07/09/更优雅的Python/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="##交换两个变量的值     1.      &amp;gt;&amp;gt;&amp;gt;a=1 2.      &amp;gt;&amp;gt;&amp;gt;b=2 3.      &amp;gt;&amp;gt;&amp;gt;t=a 4.      &amp;gt;&amp;gt;&amp;gt;a=b 5.      &amp;gt;&amp;gt;&amp;gt;b=t 6.      &amp;gt;&amp;gt;&amp;gt;a 7.      2 8.      &amp;gt;&amp;gt;&amp;gt;b 9.      1">
-<meta property="og:updated_time" content="2017-07-10T03:07:39.345Z">
+<meta property="og:description" content="交换两个变量的值1.      &amp;gt;&amp;gt;&amp;gt;a=1 2.      &amp;gt;&amp;gt;&amp;gt;b=2 3.      &amp;gt;&amp;gt;&amp;gt;t=a 4.      &amp;gt;&amp;gt;&amp;gt;a=b 5.      &amp;gt;&amp;gt;&amp;gt;b=t 6.      &amp;gt;&amp;gt;&amp;gt;a 7.      2 8.      &amp;gt;&amp;gt;&amp;gt;b 9.      1       更p">
+<meta property="og:updated_time" content="2017-07-10T03:09:49.371Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="更优雅的Python">
-<meta name="twitter:description" content="##交换两个变量的值     1.      &amp;gt;&amp;gt;&amp;gt;a=1 2.      &amp;gt;&amp;gt;&amp;gt;b=2 3.      &amp;gt;&amp;gt;&amp;gt;t=a 4.      &amp;gt;&amp;gt;&amp;gt;a=b 5.      &amp;gt;&amp;gt;&amp;gt;b=t 6.      &amp;gt;&amp;gt;&amp;gt;a 7.      2 8.      &amp;gt;&amp;gt;&amp;gt;b 9.      1">
+<meta name="twitter:description" content="交换两个变量的值1.      &amp;gt;&amp;gt;&amp;gt;a=1 2.      &amp;gt;&amp;gt;&amp;gt;b=2 3.      &amp;gt;&amp;gt;&amp;gt;t=a 4.      &amp;gt;&amp;gt;&amp;gt;a=b 5.      &amp;gt;&amp;gt;&amp;gt;b=t 6.      &amp;gt;&amp;gt;&amp;gt;a 7.      2 8.      &amp;gt;&amp;gt;&amp;gt;b 9.      1       更p">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -173,8 +173,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##交换两个变量的值    </p>
-<pre><code>1.      &gt;&gt;&gt;a=1
+        <h2 id="交换两个变量的值"><a href="#交换两个变量的值" class="headerlink" title="交换两个变量的值"></a>交换两个变量的值</h2><pre><code>1.      &gt;&gt;&gt;a=1
 2.      &gt;&gt;&gt;b=2
 3.      &gt;&gt;&gt;t=a
 4.      &gt;&gt;&gt;a=b
@@ -186,8 +185,7 @@
 更pythonic一点
 1.      &gt;&gt;&gt;a, b = b, a 
 </code></pre><a id="more"></a>        
-<p>##字符串连接    </p>
-<pre><code>1.      &gt;&gt;&gt;a =[&apos;aa&apos;, &apos;bb&apos;, &apos;cc&apos;]
+<h2 id="字符串连接"><a href="#字符串连接" class="headerlink" title="字符串连接"></a>字符串连接</h2><pre><code>1.      &gt;&gt;&gt;a =[&apos;aa&apos;, &apos;bb&apos;, &apos;cc&apos;]
 2.      &gt;&gt;&gt;s=a[0]
 3.      &gt;&gt;&gt;for b in a[1:]:
 4.             s += &apos;, &apos; + b
@@ -198,8 +196,7 @@
 2.      &gt;&gt;&gt;b=(&apos;, &apos;.join(a))
 3.      &gt;&gt;&gt;b
 4.      aabbcc
-</code></pre><p>##序列解包    </p>
-<pre><code>1.      &gt;&gt;&gt;p =&apos;abc&apos;, &apos;f&apos;, 18
+</code></pre><h2 id="序列解包"><a href="#序列解包" class="headerlink" title="序列解包"></a>序列解包</h2><pre><code>1.      &gt;&gt;&gt;p =&apos;abc&apos;, &apos;f&apos;, 18
 2.             name = p[0]
 3.             gender = p[1]
 4.             age = p[2]
