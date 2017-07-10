@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/09/更优雅的Python/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="交换两个变量的值1.      &amp;gt;&amp;gt;&amp;gt;a=1 2.      &amp;gt;&amp;gt;&amp;gt;b=2 3.      &amp;gt;&amp;gt;&amp;gt;t=a 4.      &amp;gt;&amp;gt;&amp;gt;a=b 5.      &amp;gt;&amp;gt;&amp;gt;b=t 6.      &amp;gt;&amp;gt;&amp;gt;a 7.      2 8.      &amp;gt;&amp;gt;&amp;gt;b 9.      1       更p">
-<meta property="og:updated_time" content="2017-07-10T03:09:49.371Z">
+<meta property="og:updated_time" content="2017-07-10T03:12:32.972Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="更优雅的Python">
 <meta name="twitter:description" content="交换两个变量的值1.      &amp;gt;&amp;gt;&amp;gt;a=1 2.      &amp;gt;&amp;gt;&amp;gt;b=2 3.      &amp;gt;&amp;gt;&amp;gt;t=a 4.      &amp;gt;&amp;gt;&amp;gt;a=b 5.      &amp;gt;&amp;gt;&amp;gt;b=t 6.      &amp;gt;&amp;gt;&amp;gt;a 7.      2 8.      &amp;gt;&amp;gt;&amp;gt;b 9.      1       更p">
@@ -237,8 +237,7 @@ name，gender， age = p
 <pre><code>1.        map( lambda x:x+1, range(3) )  #[1,2,3]    
 </code></pre><p><strong>reduce(function, sequence, starting_value)：对sequence中的item顺序迭代调用function，如果有starting_value，还可以作为初始值调用，例如可以用来对List求和</strong>    </p>
 <pre><code>1.        reduce( lambda x,y:x+y, range(3), 10 )  #13    
-</code></pre><p>##迭代    </p>
-<p><strong>需要获取index时使用enumerate</strong>    </p>
+</code></pre><h2 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h2><p><strong>需要获取index时使用enumerate</strong>    </p>
 <pre><code>1.        d=[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]
 2.        for index, value in enumerate(d):
 3.        print(index)    
