@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/7 | Hexo</title>
+  <title>更优雅的Python | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2017/07/index.html">
+  <meta name="description" content="##交换两个变量的值     1.      &amp;gt;&amp;gt;&amp;gt;a=1 2.      &amp;gt;&amp;gt;&amp;gt;b=2 3.      &amp;gt;&amp;gt;&amp;gt;t=a 4.      &amp;gt;&amp;gt;&amp;gt;a=b 5.      &amp;gt;&amp;gt;&amp;gt;b=t 6.      &amp;gt;&amp;gt;&amp;gt;a 7.      2 8.      &amp;gt;&amp;gt;&amp;gt;b 9.      1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="更优雅的Python">
+<meta property="og:url" content="http://yoursite.com/2017/07/09/更优雅的Python/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="##交换两个变量的值     1.      &amp;gt;&amp;gt;&amp;gt;a=1 2.      &amp;gt;&amp;gt;&amp;gt;b=2 3.      &amp;gt;&amp;gt;&amp;gt;t=a 4.      &amp;gt;&amp;gt;&amp;gt;a=b 5.      &amp;gt;&amp;gt;&amp;gt;b=t 6.      &amp;gt;&amp;gt;&amp;gt;a 7.      2 8.      &amp;gt;&amp;gt;&amp;gt;b 9.      1">
+<meta property="og:updated_time" content="2017-07-10T03:07:39.345Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="更优雅的Python">
+<meta name="twitter:description" content="##交换两个变量的值     1.      &amp;gt;&amp;gt;&amp;gt;a=1 2.      &amp;gt;&amp;gt;&amp;gt;b=2 3.      &amp;gt;&amp;gt;&amp;gt;t=a 4.      &amp;gt;&amp;gt;&amp;gt;a=b 5.      &amp;gt;&amp;gt;&amp;gt;b=t 6.      &amp;gt;&amp;gt;&amp;gt;a 7.      2 8.      &amp;gt;&amp;gt;&amp;gt;b 9.      1">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -149,157 +153,233 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-更优雅的Python" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      更优雅的Python
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/09/更优雅的Python/" class="archive-article-date">
+
+        
+        <a href="/2017/07/09/更优雅的Python/" class="archive-article-date">
   	<time datetime="2017-07-09T09:59:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-09</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/09/更优雅的Python/">更优雅的Python</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##交换两个变量的值    </p>
+<pre><code>1.      &gt;&gt;&gt;a=1
+2.      &gt;&gt;&gt;b=2
+3.      &gt;&gt;&gt;t=a
+4.      &gt;&gt;&gt;a=b
+5.      &gt;&gt;&gt;b=t
+6.      &gt;&gt;&gt;a
+7.      2
+8.      &gt;&gt;&gt;b
+9.      1      
+更pythonic一点
+1.      &gt;&gt;&gt;a, b = b, a 
+</code></pre><a id="more"></a>        
+<p>##字符串连接    </p>
+<pre><code>1.      &gt;&gt;&gt;a =[&apos;aa&apos;, &apos;bb&apos;, &apos;cc&apos;]
+2.      &gt;&gt;&gt;s=a[0]
+3.      &gt;&gt;&gt;for b in a[1:]:
+4.             s += &apos;, &apos; + b
+5.      &gt;&gt;&gt;s
+6.      aabbcc 
+更pythonic一点    
+1.      &gt;&gt;&gt;a =[&apos;aa&apos;, &apos;bb&apos;, &apos;cc&apos;]
+2.      &gt;&gt;&gt;b=(&apos;, &apos;.join(a))
+3.      &gt;&gt;&gt;b
+4.      aabbcc
+</code></pre><p>##序列解包    </p>
+<pre><code>1.      &gt;&gt;&gt;p =&apos;abc&apos;, &apos;f&apos;, 18
+2.             name = p[0]
+3.             gender = p[1]
+4.             age = p[2]
+更pythonic  
+name，gender， age = p    
+</code></pre><h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><p><strong>反转一个列表</strong>    </p>
+<pre><code>1.      &gt;&gt;&gt; a = [1,2,3]
+2.      &gt;&gt;&gt; a[::-1]
+3.      [3,2,1] 
 
-        <div class="article-info info-on-right">
-          
-          
 
+1.      &gt;&gt;&gt; a = [1,2,3] 
+2.      &gt;&gt;&gt;a.reverse() 
+3.      [3,2,1]    
+
+1.      &gt;&gt;&gt; a = [1,2,3] 
+2.      &gt;&gt;&gt;a.sort(reverse=True) 
+3.      [3,2,1] 
+</code></pre><h2 id="匿名函数lambda"><a href="#匿名函数lambda" class="headerlink" title="匿名函数lambda"></a>匿名函数lambda</h2><pre><code>1.      &gt;&gt;&gt;def a(x):
+2.             return x+1    
+3.      &gt;&gt;&gt;a(3)    
+4.      4      
+
+用lambda这样写就比较好看了：      
+
+# lambda 形参 返回值 # 
+
+1.      &gt;&gt;&gt;a=lambda x:x+1    
+2.      &gt;&gt;&gt;a(3)    
+3.      4 
+</code></pre><h2 id="…for…in…if…"><a href="#…for…in…if…" class="headerlink" title="…for…in…if…"></a>…for…in…if…</h2><pre><code>1.      &gt;&gt;&gt; a=[1,2,3]
+2.      &gt;&gt;&gt; b=[i*2 for i in a if i &gt;1]
+3.      &gt;&gt;&gt;b
+4.      [4,6]
+</code></pre><h2 id="合理使用filter、map、reduce函数"><a href="#合理使用filter、map、reduce函数" class="headerlink" title="合理使用filter、map、reduce函数"></a>合理使用filter、map、reduce函数</h2><p><strong>filter(function, sequence)：对sequence中的item依次执行function(item)，将执行结果为True的item组成一个List/String/Tuple（取决于sequence的类型）返回</strong></p>
+<pre><code>1.       filter( lambda x:x!=&apos;a&apos;, &apos;abcd&apos; )   #&apos;bcd&apos;    
+</code></pre><p><strong>map(function, sequence) ：对sequence中的item依次执行function(item)，见执行结果组成一个List返回：</strong>   </p>
+<pre><code>1.        map( lambda x:x+1, range(3) )  #[1,2,3]    
+</code></pre><p><strong>reduce(function, sequence, starting_value)：对sequence中的item顺序迭代调用function，如果有starting_value，还可以作为初始值调用，例如可以用来对List求和</strong>    </p>
+<pre><code>1.        reduce( lambda x,y:x+y, range(3), 10 )  #13    
+</code></pre><p>##迭代    </p>
+<p><strong>需要获取index时使用enumerate</strong>    </p>
+<pre><code>1.        d=[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]
+2.        for index, value in enumerate(d):
+3.        print(index)    
+4.        0
+5.        1
+6.        2
+</code></pre><p><strong>对dict中的key，value迭代</strong>  </p>
+<pre><code>1.         d=[&apos;a&apos;： 1, &apos;b&apos;： 2, &apos;c&apos;： 3]
+2.         index, value in d.items():
+3.         print(index,&apos;:&apos;,value)    
+4.         a : 1
+5.         b : 2
+6.         c : 3
+</code></pre><p><strong>用zip同时遍历两个迭代器</strong>    </p>
+<pre><code>1.        list_a = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;]
+2.        list_b = [1, 2, 3]
+# 虽然列表长度不一样，但只要有一个列表耗尽，则迭代就会停止
+3.        for letter, number in zip(list_a, list_b):
+4.        print(letter, number)
+5.        a 1
+6.        b 2
+7.        c 3          
+</code></pre><h2 id="使用with语句"><a href="#使用with语句" class="headerlink" title="使用with语句"></a>使用with语句</h2><p><strong>通过with语句，代码完成了文件打开操作，并在调用结束，或者读取发生异常时自动关闭文件，即完成了文件读写之后的处理工作。</strong>    </p>
+<pre><code>1.        with open(&apos;test.txt&apos;, &apos;r&apos;) as file:
+2.        for line in file.readlines():
+3.        print(line)
+</code></pre>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你，good lucky~<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/09/更优雅的Python/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/07/python高级特性/" class="archive-article-date">
-  	<time datetime="2017-07-07T07:05:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-07</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/07/python高级特性/">python高级特性</a>
-    </h1>
+  
+    <a href="/2017/07/07/python高级特性/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">python高级特性</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/07/python编码规范/" class="archive-article-date">
-  	<time datetime="2017-07-07T02:55:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/07/python编码规范/">python编码规范</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/06/我的第一篇博客/" class="archive-article-date">
-  	<time datetime="2017-07-06T09:40:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/06/我的第一篇博客/">我的第一篇博客</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/06/hello-world/" class="archive-article-date">
-  	<time datetime="2017-07-06T01:13:15.190Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/06/hello-world/">Hello</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -322,8 +402,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
