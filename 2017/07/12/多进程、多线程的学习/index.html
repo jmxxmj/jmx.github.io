@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>多进程、多线程的学习 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="刚开始学习多进程、多线程，看了教程和借阅的书本上的知识。先百度了下它们两者的区别，发现了这个讲解挺清楚的网站：     http://blog.csdn.net/hairetz/article/details/4281931     我基本上都是通过代码示例来进行对它们的学习，通过运行代码、改动代码来查看运行结果。然后对各个模块有的类、对象、函数进行了解。所以我就会通过代码示例来总结我的学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多进程、多线程的学习">
+<meta property="og:url" content="http://yoursite.com/2017/07/12/多进程、多线程的学习/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="刚开始学习多进程、多线程，看了教程和借阅的书本上的知识。先百度了下它们两者的区别，发现了这个讲解挺清楚的网站：     http://blog.csdn.net/hairetz/article/details/4281931     我基本上都是通过代码示例来进行对它们的学习，通过运行代码、改动代码来查看运行结果。然后对各个模块有的类、对象、函数进行了解。所以我就会通过代码示例来总结我的学习">
+<meta property="og:updated_time" content="2017-07-12T07:47:40.359Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="多进程、多线程的学习">
+<meta name="twitter:description" content="刚开始学习多进程、多线程，看了教程和借阅的书本上的知识。先百度了下它们两者的区别，发现了这个讲解挺清楚的网站：     http://blog.csdn.net/hairetz/article/details/4281931     我基本上都是通过代码示例来进行对它们的学习，通过运行代码、改动代码来查看运行结果。然后对各个模块有的类、对象、函数进行了解。所以我就会通过代码示例来总结我的学习">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -149,157 +153,307 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-多进程、多线程的学习" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      多进程、多线程的学习
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/12/多进程、多线程的学习/" class="archive-article-date">
+
+        
+        <a href="/2017/07/12/多进程、多线程的学习/" class="archive-article-date">
   	<time datetime="2017-07-12T06:28:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-12</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/12/多进程、多线程的学习/">多进程、多线程的学习</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>刚开始学习多进程、多线程，看了教程和借阅的书本上的知识。先百度了下它们两者的区别，发现了这个讲解挺清楚的网站：</strong>    </p>
+<p><a href="http://blog.csdn.net/hairetz/article/details/4281931" target="_blank" rel="external">http://blog.csdn.net/hairetz/article/details/4281931</a>    </p>
+<p><strong>我基本上都是通过代码示例来进行对它们的学习，通过运行代码、改动代码来查看运行结果。然后对各个模块有的类、对象、函数进行了解。所以我就会通过代码示例来总结我的学习</strong>   </p>
+<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p><strong>进程</strong>就是程序在计算机上的一次执行活动    </p>
+<pre><code>int main()
+{
+print(&quot;pid is %d/n&quot;,getpid());
+return 0;
+}
+</code></pre><a id="more"></a>    
+<p>进入main函数，这就是一个进程，pid会被打印出来，该函数就是该进程的唯一一次执行。return后，该进程也会退出。    </p>
+<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p><strong>创建多进程，要用到fork()函数</strong>    </p>
+<pre><code>import os
 
-        <div class="article-info info-on-right">
-          
-          
+print(&apos;Process (%s) start...&apos; % os.getpid())
+pid = os.fork()
+if pid == 0:
+print(&apos;I am child process (%s) and my parent is %s.&apos; % (os.getpid(), os.getppid()))
+else:
+print(&apos;I (%s) just created a child process (%s).&apos; % (os.getpid(), pid))
 
+
+
+运行结果如下：
+
+Process (876) start...
+I (876) just created a child process (877).
+I am child process (877) and my parent is 876.     
+</code></pre><p>、、、、、、<br><strong>multiprocessing模块提供一个类来代表进程对象</strong>    </p>
+<pre><code>from multiprocessing import Process
+import os
+
+def run_proc(name):
+print(&apos;Run child process %s (%s)...&apos; % (name, os.getpid()))
+
+if __name__==&apos;__main__&apos;:
+print(&apos;Parent process %s.&apos; % os.getpid())
+p = Process(target=run_proc, args=(&apos;test&apos;,))
+print(&apos;Child process will start.&apos;)
+p.start()
+p.join()
+print(&apos;Child process end.&apos;)
+
+执行结果如下：
+
+Parent process 928.
+Process will start.
+Run child process test (929)...
+Process end.
+</code></pre><p><strong>其中，start()是自动调用run()方法，启动进程。join()等待进程结束或超时返回</strong>    </p>
+<p>、、、、、、<br><strong>进程间的通信要用到Queue、Pipes等多种方式来交换数据</strong><br><strong>创建两个子进程</strong>    </p>
+<pre><code> from multiprocessing import Process, Queue
+ import os, time, random
+
+ **写数据进程执行的代码:**
+ def write(q):
+    print(&apos;Process to write: %s&apos; % os.getpid())
+ for value in [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;]:
+    print(&apos;Put %s to queue...&apos; % value)
+    q.put(value)
+    time.sleep(random.random())
+
+ **读数据进程执行的代码:**
+ def read(q):
+     print(&apos;Process to read: %s&apos; % os.getpid())
+ while True:
+      value = q.get(True)
+      print(&apos;Get %s from queue.&apos; % value)
+
+ if __name__==&apos;__main__&apos;:
+**父进程创建Queue，并传给各个子进程：**
+ q = Queue()
+ pw = Process(target=write, args=(q,))
+ pr = Process(target=read, args=(q,))
+
+ pw.start()
+
+ pr.start()
+
+ pw.join()
+
+ pr.terminate()    
+
+ 运行结果如下：
+
+ Process to write: 50563
+ Put A to queue...
+ Process to read: 50564
+ Get A from queue.
+ Put B to queue...
+ Get B from queue.
+ Put C to queue...
+ Get C from queue.
+</code></pre><h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><p><strong>线程</strong>就是把一个进程分为很多片，每一片都可以是一个独立的流程<br><strong>多线程编程中的threading模块</strong><br><strong>通过代码块展示该模块方法的用法</strong>    </p>
+<pre><code>&gt;&gt;&gt; import threading
+&gt;&gt;&gt; threading.stack_size() #查看当前线程栈的大小
+0
+
+&gt;&gt;&gt; threading.stack_size(64*1024)  #设置当前线程栈的大小
+0
+
+&gt;&gt;&gt; threading.stack_size()
+65536
+
+&gt;&gt;&gt; threading.active_count() #返回当前处于alive状态的所有Thread对象列表
+2
+&gt;&gt;&gt; threading.current_thread() #返回当前Thread对象
+&lt;_MainThread(MainThread, started 3768)&gt;
+
+&gt;&gt;&gt; threading.enumerate()   #返回当前处于alive状态的所有Thread对象列表
+[&lt;_MainThread(MainThread, started 3768)&gt;, &lt;Thread(SockThread, started daemon 8916)&gt;]    
+</code></pre><h1 id="、、、"><a href="#、、、" class="headerlink" title="、、、"></a>、、、</h1><p><strong>多线程中的Thread对象</strong><br><strong>通过代码能够了解到一些Thread对象的成员的作用</strong> </p>
+<pre><code>import threading
+import time
+def func1(x, y):
+for i in range(x, y):
+    print(i)
+    time.sleep(10)
+
+
+t1=threading.Thread(target = func1, args = (15, 20))
+t1.start()
+t1.join(5)
+t2=threading.Thread(target = func1, args = (5, 10))
+t2.start()   
+</code></pre><p><strong>将join(5)注释前后运行此程序会有不一样的结果，为了更细致的了解join()函数的作用，百度到了一个很详细的网址，讲述了join()函数带参数和不带参数的用法区别</strong><br><a href="http://www.gimoo.net/t/1409/54102124374f3.html" target="_blank" rel="external">http://www.gimoo.net/t/1409/54102124374f3.html</a>     </p>
+<h1 id="、、、-1"><a href="#、、、-1" class="headerlink" title="、、、"></a>、、、</h1><p><strong>Thread对象的isAlive函数示例</strong><br><strong>若线程运行结束，此时调用isAive返回值为false；反之，则为True</strong>   </p>
+<pre><code>import threading
+import time
+def func1(x, y):
+   for i in range(x, y):
+       print(i)
+      #time.sleep(10)
+
+
+t1=threading.Thread(target = func1, args = (15, 20))
+t1.start()
+t1.join(5)
+t2=threading.Thread(target = func1, args = (5, 10))
+t2.start()
+t2.join()
+print(&apos;t1:&apos;,t1.isAlive())
+print(&apos;t2:&apos;,t2.isAlive())    
+</code></pre><p><strong>通过此代码可以发现，改变join()函数内参数的值会改变线程的运行状态，从而加强了我对join()函数和isAlive函数的理解</strong>      </p>
+<h1 id="、、、-2"><a href="#、、、-2" class="headerlink" title="、、、"></a>、、、</h1><p><strong>线程的同步技术的Lock和Rlock对象</strong>    </p>
+<p><strong>下边的代码演示了使用Lock和Rlock对象实现线程同步的思路和步骤</strong>    </p>
+<pre><code> import threading
+ import time
+ class mythread(threading.Thread):
+ def __init__(self):
+    threading.Thread.__init__(self)
+ def run(self):
+    global x
+ lock.acquire()
+ for i in range(3):
+    x=x+i
+ time.sleep(2)
+ print(x)
+ lock.release()
+ lock=threading.RLock()
+ t1=[]
+ for i in range(10):
+    t=mythread()
+ t1.append(t)
+ x=0
+for i in t1:
+    i.start()
+</code></pre><p><strong>acquire()方法能够将unlocked状态修改成locked状态并立即返回</strong><br><strong>release()方法locked状态修改成unlocked状态并立即返回</strong><br><strong>通过对这两个函数注释前后运行结果的分析能够让我了解这两个函数的作用</strong>    </p>
+<p><em>还有一些实现线程同步的对象，比如：Condition对象、Queue对象、Event对象</em></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你，good lucky~<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/12/多进程、多线程的学习/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/09/更优雅的Python/" class="archive-article-date">
-  	<time datetime="2017-07-09T09:59:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-09</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/09/更优雅的Python/">更优雅的Python</a>
-    </h1>
+  
+    <a href="/2017/07/09/更优雅的Python/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">更优雅的Python</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/07/python高级特性/" class="archive-article-date">
-  	<time datetime="2017-07-07T07:05:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/07/python高级特性/">python高级特性</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/07/python编码规范/" class="archive-article-date">
-  	<time datetime="2017-07-07T02:55:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/07/python编码规范/">python编码规范</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/06/hello-world/" class="archive-article-date">
-  	<time datetime="2017-07-06T01:13:15.190Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/06/hello-world/">Hello</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -322,8 +476,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
