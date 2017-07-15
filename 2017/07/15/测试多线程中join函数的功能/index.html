@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>测试多线程中join函数的功能 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="一个测试join()函数的程序# coding: utf-8  # 测试多线程中join的功能   import threading, time    def doWaiting():       print &amp;apos;start waiting1: &amp;apos; + time.strftime(&amp;apos;%H:%M:%S&amp;apos;) + &amp;quot;n&amp;quot;        time.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="测试多线程中join函数的功能">
+<meta property="og:url" content="http://yoursite.com/2017/07/15/测试多线程中join函数的功能/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一个测试join()函数的程序# coding: utf-8  # 测试多线程中join的功能   import threading, time    def doWaiting():       print &amp;apos;start waiting1: &amp;apos; + time.strftime(&amp;apos;%H:%M:%S&amp;apos;) + &amp;quot;n&amp;quot;        time.">
+<meta property="og:updated_time" content="2017-07-15T08:09:03.244Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="测试多线程中join函数的功能">
+<meta name="twitter:description" content="一个测试join()函数的程序# coding: utf-8  # 测试多线程中join的功能   import threading, time    def doWaiting():       print &amp;apos;start waiting1: &amp;apos; + time.strftime(&amp;apos;%H:%M:%S&amp;apos;) + &amp;quot;n&amp;quot;        time.">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -149,211 +153,201 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-测试多线程中join函数的功能" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      测试多线程中join函数的功能
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/15/测试多线程中join函数的功能/" class="archive-article-date">
+
+        
+        <a href="/2017/07/15/测试多线程中join函数的功能/" class="archive-article-date">
   	<time datetime="2017-07-15T07:03:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-15</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/15/测试多线程中join函数的功能/">测试多线程中join函数的功能</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一个测试join-函数的程序"><a href="#一个测试join-函数的程序" class="headerlink" title="一个测试join()函数的程序"></a>一个测试join()函数的程序</h2><pre><code># coding: utf-8
 
-        <div class="article-info info-on-right">
-          
-          
+# 测试多线程中join的功能
 
+
+import threading, time  
+
+def doWaiting():  
+    print &apos;start waiting1: &apos; + time.strftime(&apos;%H:%M:%S&apos;) + &quot;n&quot;  
+
+    time.sleep(3)  
+
+    print &apos;stop waiting1: &apos; + time.strftime(&apos;%H:%M:%S&apos;) + &quot;n&quot; 
+</code></pre><a id="more"></a>
+<pre><code>def doWaiting1():  
+
+    print &apos;start waiting2: &apos; + time.strftime(&apos;%H:%M:%S&apos;) + &quot;n&quot;   
+
+    time.sleep(8)  
+
+    print &apos;stop waiting2: &apos;, time.strftime(&apos;%H:%M:%S&apos;) + &quot;n&quot;  
+
+tsk = []    
+
+thread1 = threading.Thread(target = doWaiting)  
+
+thread1.start()  
+
+tsk.append(thread1)
+
+thread2 = threading.Thread(target = doWaiting1)  
+
+thread2.start()  
+
+tsk.append(thread2)
+
+print &apos;start join: &apos; + time.strftime(&apos;%H:%M:%S&apos;) + &quot;n&quot;   
+
+for tt in tsk:
+
+    tt.join()
+
+print &apos;end join: &apos; + time.strftime(&apos;%H:%M:%S&apos;) + &quot;n&quot;    
+</code></pre><p><strong>在join函数不带参数的情况下</strong>    </p>
+<pre><code>运行结果：    
+start waiting1: 15:10:11n    
+start waiting2: 15:10:11n    
+start join: 15:10:11n    
+stop waiting1: 15:10:14n    
+stop waiting2:  15:10:19n    
+end join: 15:10:19n    
+</code></pre><p><strong>可以看到，两个线程并行执行，进程1在3s后结束，进程2在8s后结束，然后回到主进程，执行打印「end join」。</strong>    </p>
+<p>、、、、、、<br><strong>把参数设置为2，观察运行结果</strong>    </p>
+<pre><code>运行结果：    
+start waiting1: 15:40:02n
+start waiting2: 15:40:02n
+start join: 15:40:02n
+stop waiting1: 15:40:05n
+end join: 15:40:06n
+stop waiting2:  15:40:10n    
+</code></pre><p><strong>可以看到，两个线程开始并发执行，然后执行线程1的join(2)，等线程1执行2s后就不管它了，执行线程2的join(2)，等线程2执行2s后也不管它了（在此过程中线程1执行结束，打印线程1的结束信息），开始执行主进程，打印「end join」。4s之后线程2执行结束。</strong>    </p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong>当join函数不带参数的时候：join的原理就是依次检验线程池中的线程是否结束，没有结束就阻塞直到线程结束，如果结束则跳转执行下一个线程的join函数。</strong>    </p>
+<p><strong>当join函数设置超时(带有参数）的时候，通过传给join一个参数来设置超时，也就是超过指定时间join就不在阻塞进程。</strong>    </p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你，good lucky~<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/15/测试多线程中join函数的功能/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/13/端口扫描技术/" class="archive-article-date">
-  	<time datetime="2017-07-13T08:04:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-13</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/13/端口扫描技术/">端口扫描技术</a>
-    </h1>
+  
+    <a href="/2017/07/13/端口扫描技术/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">端口扫描技术</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/12/多进程、多线程的学习/" class="archive-article-date">
-  	<time datetime="2017-07-12T06:28:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/12/多进程、多线程的学习/">多进程、多线程的学习</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/09/更优雅的Python/" class="archive-article-date">
-  	<time datetime="2017-07-09T09:59:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/09/更优雅的Python/">更优雅的Python</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/07/python高级特性/" class="archive-article-date">
-  	<time datetime="2017-07-07T07:05:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/07/python高级特性/">python高级特性</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/07/python编码规范/" class="archive-article-date">
-  	<time datetime="2017-07-07T02:55:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/07/python编码规范/">python编码规范</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/06/hello-world/" class="archive-article-date">
-  	<time datetime="2017-07-06T01:13:15.190Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/06/hello-world/">Hello</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -376,8 +370,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
