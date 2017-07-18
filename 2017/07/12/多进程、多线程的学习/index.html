@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/12/多进程、多线程的学习/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="刚开始学习多进程、多线程，看了教程和借阅的书本上的知识。先百度了下它们两者的区别，发现了这个讲解挺清楚的网站：     http://blog.csdn.net/hairetz/article/details/4281931     我基本上都是通过代码示例来进行对它们的学习，通过运行代码、改动代码来查看运行结果。然后对各个模块有的类、对象、函数进行了解。所以我就会通过代码示例来总结我的学习">
-<meta property="og:updated_time" content="2017-07-12T07:47:40.359Z">
+<meta property="og:updated_time" content="2017-07-18T07:33:43.327Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多进程、多线程的学习">
 <meta name="twitter:description" content="刚开始学习多进程、多线程，看了教程和借阅的书本上的知识。先百度了下它们两者的区别，发现了这个讲解挺清楚的网站：     http://blog.csdn.net/hairetz/article/details/4281931     我基本上都是通过代码示例来进行对它们的学习，通过运行代码、改动代码来查看运行结果。然后对各个模块有的类、对象、函数进行了解。所以我就会通过代码示例来总结我的学习">
@@ -325,21 +325,21 @@ print(&apos;t2:&apos;,t2.isAlive())
  def __init__(self):
     threading.Thread.__init__(self)
  def run(self):
-    global x
- lock.acquire()
+    global x  #声明一个全局变量
+ lock.acquire()  #上锁，acquire()和release()之间的语句只能有一个线程进入，其余的线程在acquire()处等待
  for i in range(3):
     x=x+i
  time.sleep(2)
  print(x)
- lock.release()
- lock=threading.RLock()
+ lock.release()  #解锁
+ lock=threading.RLock()    
  t1=[]
  for i in range(10):
     t=mythread()
- t1.append(t)
+ t1.append(t)    #创建10个线程，并把它们放在一个列表里
  x=0
 for i in t1:
-    i.start()
+    i.start()  #开启列表中的所有线程
 </code></pre><p><strong>acquire()方法能够将unlocked状态修改成locked状态并立即返回</strong><br><strong>release()方法locked状态修改成unlocked状态并立即返回</strong><br><strong>通过对这两个函数注释前后运行结果的分析能够让我了解这两个函数的作用</strong>    </p>
 <p><em>还有一些实现线程同步的对象，比如：Condition对象、Queue对象、Event对象</em></p>
 
