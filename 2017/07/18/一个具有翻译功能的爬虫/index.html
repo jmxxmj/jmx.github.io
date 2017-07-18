@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <title>一个具有翻译功能的爬虫 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="利用审查元素得到的一个具有翻译功能的爬虫程序import urllib.request import urllib.parse import json import time  while True:     content = input(&amp;quot;请输入要翻译的内容:&amp;quot;)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个具有翻译功能的爬虫">
+<meta property="og:url" content="http://yoursite.com/2017/07/18/一个具有翻译功能的爬虫/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="利用审查元素得到的一个具有翻译功能的爬虫程序import urllib.request import urllib.parse import json import time  while True:     content = input(&amp;quot;请输入要翻译的内容:&amp;quot;)">
+<meta property="og:updated_time" content="2017-07-18T09:01:31.957Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="一个具有翻译功能的爬虫">
+<meta name="twitter:description" content="利用审查元素得到的一个具有翻译功能的爬虫程序import urllib.request import urllib.parse import json import time  while True:     content = input(&amp;quot;请输入要翻译的内容:&amp;quot;)">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -149,16 +153,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-一个具有翻译功能的爬虫" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-一个具有翻译功能的爬虫" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/18/一个具有翻译功能的爬虫/">一个具有翻译功能的爬虫</a>
+    <h1 class="article-title" itemprop="name">
+      一个具有翻译功能的爬虫
     </h1>
   
 
@@ -178,65 +180,58 @@ import time
 
 while True:
     content = input(&quot;请输入要翻译的内容:&quot;)
+</code></pre><a id="more"></a>                   
+<pre><code>url=&apos;http://fanyi.youdao.com/translate?smartresult=dict&amp;smartresult=rule&amp;smartresult=ugc&apos;
+data={}
+data[&apos;type&apos;] = &apos;AUTO&apos;
+data[&apos;i&apos;] = content
+data[&apos;doctype&apos;] = &apos;json&apos;
+data[&apos;xmlversion&apos;] = &apos;2.1&apos;
+data[&apos;keyfrom&apos;] = &apos;fanyi.web&apos;
+data[&apos;ue&apos;] = &apos;UTF-8&apos;
+data[&apos;action&apos;] = &apos;FY_BY_CL1CKBUTTON&apos;
+data[&apos;typoResult&apos;] = &apos;true&apos;
+
+
+data = urllib.parse.urlencode(data).encode(&apos;utf-8&apos;)
+
+
+req = urllib.request.Request(url,data)
+req.add_header(&apos;User-Agent&apos;,&apos;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.108 Safari/537.36 2345Explorer/8.6.2.15784&apos;)
+
+
+response = urllib.request.urlopen(req)
+html = response.read().decode(&apos;utf-8&apos;)
+
+target = json.loads(html)
+target = target[&apos;translateResult&apos;][0][0][&apos;tgt&apos;]
+
+print(target)
+time.sleep(5)
 </code></pre>
-        
-          <a class="article-more-a" href="/2017/07/18/一个具有翻译功能的爬虫/#more">more >></a>
-        
       
 
       
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/18/一个具有翻译功能的爬虫/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-有关正则表达式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/17/有关正则表达式/">有关正则表达式</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/17/有关正则表达式/" class="archive-article-date">
-  	<time datetime="2017-07-17T09:32:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="正则表达式的作用"><a href="#正则表达式的作用" class="headerlink" title="正则表达式的作用"></a>正则表达式的作用</h2><p>1.测试字符串内的模式：    </p>
-<p>例如，可以测试输入字符串，以查看字符串内是否出现电话号码模式或信用卡号码模式。这称为数据验证。    </p>
-<p>2.替换文本：    </p>
-<p>可以使用正则表达式来识别文档中的特定文本，完全删除该文本或者用其他文本替换它。<br>
-        
-          <a class="article-more-a" href="/2017/07/17/有关正则表达式/#more">more >></a>
-        
-      
-
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你，good lucky~<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -245,415 +240,85 @@ while True:
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/17/有关正则表达式/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/18/一个具有翻译功能的爬虫/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
-
-
-
   
-    <article id="post-测试多线程中join函数的功能" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/15/测试多线程中join函数的功能/">测试多线程中join函数的功能</a>
-    </h1>
   
-
-        
-        <a href="/2017/07/15/测试多线程中join函数的功能/" class="archive-article-date">
-  	<time datetime="2017-07-15T07:03:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一个测试join-函数的程序"><a href="#一个测试join-函数的程序" class="headerlink" title="一个测试join()函数的程序"></a>一个测试join()函数的程序</h2><pre><code># coding: utf-8
-
-# 测试多线程中join的功能
-
-
-import threading, time  
-
-def doWaiting():  
-    print &apos;start waiting1: &apos; + time.strftime(&apos;%H:%M:%S&apos;) + &quot;n&quot;  
-
-    time.sleep(3)  
-
-    print &apos;stop waiting1: &apos; + time.strftime(&apos;%H:%M:%S&apos;) + &quot;n&quot; 
-</code></pre>
-        
-          <a class="article-more-a" href="/2017/07/15/测试多线程中join函数的功能/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/15/测试多线程中join函数的功能/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
+    <a href="/2017/07/17/有关正则表达式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">有关正则表达式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 
 
 
   
-    <article id="post-端口扫描技术" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/13/端口扫描技术/">端口扫描技术</a>
-    </h1>
   
 
-        
-        <a href="/2017/07/13/端口扫描技术/" class="archive-article-date">
-  	<time datetime="2017-07-13T08:04:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="使用单线程的简单端口扫描器"><a href="#使用单线程的简单端口扫描器" class="headerlink" title="使用单线程的简单端口扫描器"></a>使用单线程的简单端口扫描器</h2><p><strong>程序由以下几部分组成：</strong><br><strong>1.读取端口及目标服务器</strong><br><strong>2.测试TCP端口连接</strong><br><strong>3.输出开放端口结果</strong><br>
-        
-          <a class="article-more-a" href="/2017/07/13/端口扫描技术/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/13/端口扫描技术/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-多进程、多线程的学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/12/多进程、多线程的学习/">多进程、多线程的学习</a>
-    </h1>
   
 
-        
-        <a href="/2017/07/12/多进程、多线程的学习/" class="archive-article-date">
-  	<time datetime="2017-07-12T06:28:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>刚开始学习多进程、多线程，看了教程和借阅的书本上的知识。先百度了下它们两者的区别，发现了这个讲解挺清楚的网站：</strong>    </p>
-<p><a href="http://blog.csdn.net/hairetz/article/details/4281931" target="_blank" rel="external">http://blog.csdn.net/hairetz/article/details/4281931</a>    </p>
-<p><strong>我基本上都是通过代码示例来进行对它们的学习，通过运行代码、改动代码来查看运行结果。然后对各个模块有的类、对象、函数进行了解。所以我就会通过代码示例来总结我的学习</strong>   </p>
-<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p><strong>进程</strong>就是程序在计算机上的一次执行活动    </p>
-<pre><code>int main()
-{
-print(&quot;pid is %d/n&quot;,getpid());
-return 0;
-}
-</code></pre>
-        
-          <a class="article-more-a" href="/2017/07/12/多进程、多线程的学习/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/12/多进程、多线程的学习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-更优雅的Python" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/09/更优雅的Python/">更优雅的Python</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/09/更优雅的Python/" class="archive-article-date">
-  	<time datetime="2017-07-09T09:59:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="交换两个变量的值"><a href="#交换两个变量的值" class="headerlink" title="交换两个变量的值"></a>交换两个变量的值</h2><pre><code>1.      &gt;&gt;&gt;a=1
-2.      &gt;&gt;&gt;b=2
-3.      &gt;&gt;&gt;t=a
-4.      &gt;&gt;&gt;a=b
-5.      &gt;&gt;&gt;b=t
-6.      &gt;&gt;&gt;a
-7.      2
-8.      &gt;&gt;&gt;b
-9.      1      
-更pythonic一点
-1.      &gt;&gt;&gt;a, b = b, a 
-</code></pre>
-        
-          <a class="article-more-a" href="/2017/07/09/更优雅的Python/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/09/更优雅的Python/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-python高级特性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/07/python高级特性/">python高级特性</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/07/python高级特性/" class="archive-article-date">
-  	<time datetime="2017-07-07T07:05:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>由一个例子来开启python高级特性的学习吧~</strong>    </p>
-<p><strong>构造一个列表 1，3，5，7，9，…,99</strong><br>你会想到可以用一个循环来实现:(注意空格缩进）      </p>
-<pre><code>&gt;&gt;&gt;L=[]      
-&gt;&gt;&gt;n=1    
-&gt;&gt;&gt;while n &lt;= 99:    
-   L.append(n)    
-   n=n+2    
-</code></pre><h2 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h2>
-        
-          <a class="article-more-a" href="/2017/07/07/python高级特性/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/07/python高级特性/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-python编码规范" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/07/python编码规范/">python编码规范</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/07/python编码规范/" class="archive-article-date">
-  	<time datetime="2017-07-07T02:55:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="标点符号"><a href="#标点符号" class="headerlink" title="标点符号"></a><strong>标点符号</strong></h2><h6 id="分号"><a href="#分号" class="headerlink" title="分号"></a><strong>分号</strong></h6><p>；</p>
-<p>分号的使用不像C语言中的分号的使用，不需要在行尾加上分号。    </p>
-<h6 id="逗号和冒号"><a href="#逗号和冒号" class="headerlink" title="逗号和冒号"></a><strong>逗号和冒号</strong></h6><p>，和 ：<br>
-        
-          <a class="article-more-a" href="/2017/07/07/python编码规范/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/07/python编码规范/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/06/hello-world/">Hello</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/06/hello-world/" class="archive-article-date">
-  	<time datetime="2017-07-06T01:13:15.190Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h4 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h4>
-        
-          <a class="article-more-a" href="/2017/07/06/hello-world/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/06/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
 
 
@@ -676,8 +341,8 @@ return 0;
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
