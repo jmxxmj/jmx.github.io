@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>一个具有翻译功能的爬虫 | Hexo</title>
+  <title>几个简陋的爬虫程序 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="利用审查元素得到的一个具有翻译功能的爬虫程序import urllib.request import urllib.parse import json import time  while True:     content = input(&amp;quot;请输入要翻译的内容:&amp;quot;)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一个具有翻译功能的爬虫">
+<meta property="og:title" content="几个简陋的爬虫程序">
 <meta property="og:url" content="http://yoursite.com/2017/07/18/一个具有翻译功能的爬虫/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="利用审查元素得到的一个具有翻译功能的爬虫程序import urllib.request import urllib.parse import json import time  while True:     content = input(&amp;quot;请输入要翻译的内容:&amp;quot;)">
-<meta property="og:updated_time" content="2017-07-18T09:01:31.957Z">
+<meta property="og:updated_time" content="2017-07-24T10:47:04.609Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一个具有翻译功能的爬虫">
+<meta name="twitter:title" content="几个简陋的爬虫程序">
 <meta name="twitter:description" content="利用审查元素得到的一个具有翻译功能的爬虫程序import urllib.request import urllib.parse import json import time  while True:     content = input(&amp;quot;请输入要翻译的内容:&amp;quot;)">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -160,7 +160,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      一个具有翻译功能的爬虫
+      几个简陋的爬虫程序
     </h1>
   
 
@@ -208,6 +208,50 @@ target = target[&apos;translateResult&apos;][0][0][&apos;tgt&apos;]
 
 print(target)
 time.sleep(5)
+</code></pre><h2 id="一个爬取百度贴吧图片的程序"><a href="#一个爬取百度贴吧图片的程序" class="headerlink" title="一个爬取百度贴吧图片的程序"></a>一个爬取百度贴吧图片的程序</h2><pre><code>#coding=utf-8
+import urllib.request
+import re
+
+def getHtml(url):
+    page = urllib.request.urlopen(url)
+    html = page.read()
+    return html.decode(&apos;utf-8&apos;)
+
+def getImg(html):
+    reg = r&apos;src=&quot;(.+?\.jpg)&quot; style=&apos;
+    imgre = re.compile(reg)
+    imglist = re.findall(imgre, html)
+    x = 0
+    for imgurl in imglist:
+        urllib.request.urlretrieve(imgurl,&apos;D:\\test\\%s.jpg&apos; % x)
+        x+=1
+
+
+html = getHtml(&quot;https://tieba.baidu.com/p/2855718935#!/l/p1&quot;)
+
+getImg(html)     
+</code></pre><h2 id="一个爬取过滤掉图片的段子的程序"><a href="#一个爬取过滤掉图片的段子的程序" class="headerlink" title="一个爬取过滤掉图片的段子的程序"></a>一个爬取过滤掉图片的段子的程序</h2><pre><code>import urllib
+import urllib.request
+import re
+
+
+url = &apos;https://www.qiushibaike.com/history/&apos;
+
+
+headers = {&apos;User-Agent&apos;:&apos;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.108 Safari/537.36 2345Explorer/8.6.2.15784&apos;}
+
+request = urllib.request.Request(url = url, headers = headers)
+response = urllib.request.urlopen(request)
+
+
+
+content = response.read().decode(&apos;utf-8&apos;)
+pattern=re.compile(&apos;&lt;div.*?author clearfix&quot;&gt;.*?&lt;h2&gt;(.*?)&lt;/h2&gt;.*?&lt;div.*?&lt;span&gt;.*?content&quot;&gt;.*?(.*?)&lt;/span&gt;.*?&lt;/div&gt;.*?&lt;img src=&quot;(.*?)&quot; alt=.*?&gt;.*?&lt;/i&gt;&apos;,re.S)
+items = re.findall(pattern,content)
+for item in items:
+    haveImg = re.search(&quot;img&quot;,item[2])
+    if not haveImg:
+        print(item[0],item[1])
 </code></pre>
       
 
