@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>几个简陋的爬虫程序 | stylem</title>
+  <title>用flask写一个搜索引擎 | stylem</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="利用审查元素得到的一个具有翻译功能的爬虫程序import urllib.request import urllib.parse import json import time  while True:     content = input(&amp;quot;请输入要翻译的内容:&amp;quot;)">
+  <meta name="description" content="写这个简陋的搜索引擎主要是能让我对flask框架有一定的认识，所以我把它记录下来     一个.py主文件     # -*- coding: utf-8 -*- from flask import Flask from flask import render_template from flask import request import urllib.request from flask_b">
 <meta property="og:type" content="article">
-<meta property="og:title" content="几个简陋的爬虫程序">
-<meta property="og:url" content="http://yoursite.com/2017/07/18/一个具有翻译功能的爬虫/index.html">
+<meta property="og:title" content="用flask写一个搜索引擎">
+<meta property="og:url" content="http://yoursite.com/2017/09/21/用flask写一个搜索引擎/index.html">
 <meta property="og:site_name" content="stylem">
-<meta property="og:description" content="利用审查元素得到的一个具有翻译功能的爬虫程序import urllib.request import urllib.parse import json import time  while True:     content = input(&amp;quot;请输入要翻译的内容:&amp;quot;)">
-<meta property="og:updated_time" content="2017-07-24T10:47:04.609Z">
+<meta property="og:description" content="写这个简陋的搜索引擎主要是能让我对flask框架有一定的认识，所以我把它记录下来     一个.py主文件     # -*- coding: utf-8 -*- from flask import Flask from flask import render_template from flask import request import urllib.request from flask_b">
+<meta property="og:updated_time" content="2017-09-21T12:03:54.944Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="几个简陋的爬虫程序">
-<meta name="twitter:description" content="利用审查元素得到的一个具有翻译功能的爬虫程序import urllib.request import urllib.parse import json import time  while True:     content = input(&amp;quot;请输入要翻译的内容:&amp;quot;)">
+<meta name="twitter:title" content="用flask写一个搜索引擎">
+<meta name="twitter:description" content="写这个简陋的搜索引擎主要是能让我对flask框架有一定的认识，所以我把它记录下来     一个.py主文件     # -*- coding: utf-8 -*- from flask import Flask from flask import render_template from flask import request import urllib.request from flask_b">
   
     <link rel="alternative" href="/atom.xml" title="stylem" type="application/atom+xml">
   
@@ -153,105 +153,102 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-一个具有翻译功能的爬虫" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-用flask写一个搜索引擎" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      几个简陋的爬虫程序
+      用flask写一个搜索引擎
     </h1>
   
 
         
-        <a href="/2017/07/18/一个具有翻译功能的爬虫/" class="archive-article-date">
-  	<time datetime="2017-07-18T08:57:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-18</time>
+        <a href="/2017/09/21/用flask写一个搜索引擎/" class="archive-article-date">
+  	<time datetime="2017-09-21T11:26:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="利用审查元素得到的一个具有翻译功能的爬虫程序"><a href="#利用审查元素得到的一个具有翻译功能的爬虫程序" class="headerlink" title="利用审查元素得到的一个具有翻译功能的爬虫程序"></a>利用审查元素得到的一个具有翻译功能的爬虫程序</h2><pre><code>import urllib.request
-import urllib.parse
-import json
-import time
-
-while True:
-    content = input(&quot;请输入要翻译的内容:&quot;)
-</code></pre><a id="more"></a>                   
-<pre><code>url=&apos;http://fanyi.youdao.com/translate?smartresult=dict&amp;smartresult=rule&amp;smartresult=ugc&apos;
-data={}
-data[&apos;type&apos;] = &apos;AUTO&apos;
-data[&apos;i&apos;] = content
-data[&apos;doctype&apos;] = &apos;json&apos;
-data[&apos;xmlversion&apos;] = &apos;2.1&apos;
-data[&apos;keyfrom&apos;] = &apos;fanyi.web&apos;
-data[&apos;ue&apos;] = &apos;UTF-8&apos;
-data[&apos;action&apos;] = &apos;FY_BY_CL1CKBUTTON&apos;
-data[&apos;typoResult&apos;] = &apos;true&apos;
-
-
-data = urllib.parse.urlencode(data).encode(&apos;utf-8&apos;)
-
-
-req = urllib.request.Request(url,data)
-req.add_header(&apos;User-Agent&apos;,&apos;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.108 Safari/537.36 2345Explorer/8.6.2.15784&apos;)
-
-
-response = urllib.request.urlopen(req)
-html = response.read().decode(&apos;utf-8&apos;)
-
-target = json.loads(html)
-target = target[&apos;translateResult&apos;][0][0][&apos;tgt&apos;]
-
-print(target)
-time.sleep(5)
-</code></pre><h2 id="一个爬取百度贴吧图片的程序"><a href="#一个爬取百度贴吧图片的程序" class="headerlink" title="一个爬取百度贴吧图片的程序"></a>一个爬取百度贴吧图片的程序</h2><pre><code>#coding=utf-8
+        <p><strong>写这个简陋的搜索引擎主要是能让我对flask框架有一定的认识，所以我把它记录下来</strong>    </p>
+<p>一个.py主文件    </p>
+<pre><code># -*- coding: utf-8 -*-
+from flask import Flask
+from flask import render_template
+from flask import request
 import urllib.request
-import re
+from flask_bootstrap import Bootstrap
+app=Flask(__name__)
+</code></pre><a id="more"></a>
+<pre><code>bootstrap=Bootstrap(app)
+ #name为当前的主文件名
 
-def getHtml(url):
-    page = urllib.request.urlopen(url)
-    html = page.read()
-    return html.decode(&apos;utf-8&apos;)
+def getHtml(wd,pn):
+    req=urllib.request.Request(&apos;https://www.baidu.com/s?wd=%s&amp;pn=%s&apos; %(wd,pn))
+    req.add_header(&apos;User-Agent&apos;,&apos;Mozilla/5.0 (Windows NT 10.0; WOW64; rv:55.0) Gecko/20100101 Firefox/55.0&apos;)
+    return urllib.request.urlopen(req).read()
 
-def getImg(html):
-    reg = r&apos;src=&quot;(.+?\.jpg)&quot; style=&apos;
-    imgre = re.compile(reg)
-    imglist = re.findall(imgre, html)
-    x = 0
-    for imgurl in imglist:
-        urllib.request.urlretrieve(imgurl,&apos;D:\\test\\%s.jpg&apos; % x)
-        x+=1
+#装饰器
+@app.route(&apos;/&apos;)#定义路由
+def index():
+    return render_template(&apos;querry.html&apos;)
+
+@app.route(&apos;/s&apos;)
+def search():
+    if request.method==&apos;GET&apos;:
+        wd=request.args.get(&apos;wd&apos;)
+        wd=urllib.request.quote(wd.encode(&apos;utf-8&apos;))
+        pn = request.args.get(&apos;pn&apos;)
+        return getHtml(wd,pn)
+    else:
+        return None
+
+if __name__==&apos;__main__&apos;:
+    app.debug=True
+    app.run()
+</code></pre><p>一个template文件夹下的.html文件     </p>
+<pre><code>&lt;h1&gt;一个搜索引擎的页面&lt;/h1&gt;
+
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;搜索界面&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body bgcolor=&quot;#C0C0C0&quot;&gt;
+&lt;form action=&quot;/s&quot; method=&quot;get&quot;&gt;
+    &lt;input type=&quot;text&quot; class=&quot;txt&quot; name=&quot;wd&quot;  id=&quot;txt&quot;/&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-success&quot;&gt;百度一下&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p><strong>这个html文件就是展现出来的搜索页面，如果用到css、bootstrap、js等就会有一个吸引人的页面</strong>     </p>
+<h3 id="重要的函数实现："><a href="#重要的函数实现：" class="headerlink" title="重要的函数实现："></a>重要的函数实现：</h3><pre><code> # 搜索函数
+@app.route(&apos;/s&apos;)
+def search():
+    if request.method==&apos;GET&apos;:
+        wd=request.args.get(&apos;wd&apos;) #因为你搜索的关键词都在wd参数中，所以用args解析得到的wd就是你搜索的词
+
+        wd=urllib.request.quote(wd.encode(&apos;utf-8&apos;))#编码成utf-8，输入搜索词汇可以输入中文
+
+        pn = request.args.get(&apos;pn&apos;)#这里的pn参数控制搜索的页数，不加pn的话只能搜索到第一页内容
+
+        return getHtml(wd,pn)
+    else:
+        return None
 
 
-html = getHtml(&quot;https://tieba.baidu.com/p/2855718935#!/l/p1&quot;)
 
-getImg(html)     
-</code></pre><h2 id="一个爬取过滤掉图片的段子的程序"><a href="#一个爬取过滤掉图片的段子的程序" class="headerlink" title="一个爬取过滤掉图片的段子的程序"></a>一个爬取过滤掉图片的段子的程序</h2><pre><code>import urllib
-import urllib.request
-import re
+ # 获取访问页面     
 
+        def getHtml(wd,pn):
+            req=urllib.request.Request(&apos;https://www.baidu.com/s?wd=%s&amp;pn=%s&apos; %(wd,pn))#得到两个参数之后要把相应的url读取出来
 
-url = &apos;https://www.qiushibaike.com/history/&apos;
+            req.add_header(&apos;User-Agent&apos;,&apos;Mozilla/5.0 (Windows NT 10.0; WOW64; rv:55.0) Gecko/20100101 Firefox/55.0&apos;)#模拟浏览器访问，所以增加一个header
 
-
-headers = {&apos;User-Agent&apos;:&apos;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.108 Safari/537.36 2345Explorer/8.6.2.15784&apos;}
-
-request = urllib.request.Request(url = url, headers = headers)
-response = urllib.request.urlopen(request)
-
-
-
-content = response.read().decode(&apos;utf-8&apos;)
-pattern=re.compile(&apos;&lt;div.*?author clearfix&quot;&gt;.*?&lt;h2&gt;(.*?)&lt;/h2&gt;.*?&lt;div.*?&lt;span&gt;.*?content&quot;&gt;.*?(.*?)&lt;/span&gt;.*?&lt;/div&gt;.*?&lt;img src=&quot;(.*?)&quot; alt=.*?&gt;.*?&lt;/i&gt;&apos;,re.S)
-items = re.findall(pattern,content)
-for item in items:
-    haveImg = re.search(&quot;img&quot;,item[2])
-    if not haveImg:
-        print(item[0],item[1])
+            return urllib.request.urlopen(req).read()    
 </code></pre>
       
 
@@ -331,7 +328,7 @@ for item in items:
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/18/一个具有翻译功能的爬虫/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/21/用flask写一个搜索引擎/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -345,18 +342,9 @@ for item in items:
   
 <nav id="article-nav">
   
-    <a href="/2017/09/21/用flask写一个搜索引擎/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          用flask写一个搜索引擎
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/07/17/有关正则表达式/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">有关正则表达式</div>
+    <a href="/2017/07/18/一个具有翻译功能的爬虫/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">几个简陋的爬虫程序</div>
       <i class="icon-circle-right"></i>
     </a>
   

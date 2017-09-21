@@ -6,18 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>几个简陋的爬虫程序 | stylem</title>
+  <title>Archives: 2017/9 | stylem</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="利用审查元素得到的一个具有翻译功能的爬虫程序import urllib.request import urllib.parse import json import time  while True:     content = input(&amp;quot;请输入要翻译的内容:&amp;quot;)">
-<meta property="og:type" content="article">
-<meta property="og:title" content="几个简陋的爬虫程序">
-<meta property="og:url" content="http://yoursite.com/2017/07/18/一个具有翻译功能的爬虫/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="stylem">
+<meta property="og:url" content="http://yoursite.com/archives/2017/09/index.html">
 <meta property="og:site_name" content="stylem">
-<meta property="og:description" content="利用审查元素得到的一个具有翻译功能的爬虫程序import urllib.request import urllib.parse import json import time  while True:     content = input(&amp;quot;请输入要翻译的内容:&amp;quot;)">
-<meta property="og:updated_time" content="2017-07-24T10:47:04.609Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="几个简陋的爬虫程序">
-<meta name="twitter:description" content="利用审查元素得到的一个具有翻译功能的爬虫程序import urllib.request import urllib.parse import json import time  while True:     content = input(&amp;quot;请输入要翻译的内容:&amp;quot;)">
+<meta name="twitter:title" content="stylem">
   
     <link rel="alternative" href="/atom.xml" title="stylem" type="application/atom+xml">
   
@@ -153,226 +149,49 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-一个具有翻译功能的爬虫" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      几个简陋的爬虫程序
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/09/21/用flask写一个搜索引擎/" class="archive-article-date">
+  	<time datetime="2017-09-21T11:26:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-21</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/09/21/用flask写一个搜索引擎/">用flask写一个搜索引擎</a>
     </h1>
   
 
-        
-        <a href="/2017/07/18/一个具有翻译功能的爬虫/" class="archive-article-date">
-  	<time datetime="2017-07-18T08:57:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="利用审查元素得到的一个具有翻译功能的爬虫程序"><a href="#利用审查元素得到的一个具有翻译功能的爬虫程序" class="headerlink" title="利用审查元素得到的一个具有翻译功能的爬虫程序"></a>利用审查元素得到的一个具有翻译功能的爬虫程序</h2><pre><code>import urllib.request
-import urllib.parse
-import json
-import time
+        <div class="article-info info-on-right">
+          
+          
 
-while True:
-    content = input(&quot;请输入要翻译的内容:&quot;)
-</code></pre><a id="more"></a>                   
-<pre><code>url=&apos;http://fanyi.youdao.com/translate?smartresult=dict&amp;smartresult=rule&amp;smartresult=ugc&apos;
-data={}
-data[&apos;type&apos;] = &apos;AUTO&apos;
-data[&apos;i&apos;] = content
-data[&apos;doctype&apos;] = &apos;json&apos;
-data[&apos;xmlversion&apos;] = &apos;2.1&apos;
-data[&apos;keyfrom&apos;] = &apos;fanyi.web&apos;
-data[&apos;ue&apos;] = &apos;UTF-8&apos;
-data[&apos;action&apos;] = &apos;FY_BY_CL1CKBUTTON&apos;
-data[&apos;typoResult&apos;] = &apos;true&apos;
-
-
-data = urllib.parse.urlencode(data).encode(&apos;utf-8&apos;)
-
-
-req = urllib.request.Request(url,data)
-req.add_header(&apos;User-Agent&apos;,&apos;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.108 Safari/537.36 2345Explorer/8.6.2.15784&apos;)
-
-
-response = urllib.request.urlopen(req)
-html = response.read().decode(&apos;utf-8&apos;)
-
-target = json.loads(html)
-target = target[&apos;translateResult&apos;][0][0][&apos;tgt&apos;]
-
-print(target)
-time.sleep(5)
-</code></pre><h2 id="一个爬取百度贴吧图片的程序"><a href="#一个爬取百度贴吧图片的程序" class="headerlink" title="一个爬取百度贴吧图片的程序"></a>一个爬取百度贴吧图片的程序</h2><pre><code>#coding=utf-8
-import urllib.request
-import re
-
-def getHtml(url):
-    page = urllib.request.urlopen(url)
-    html = page.read()
-    return html.decode(&apos;utf-8&apos;)
-
-def getImg(html):
-    reg = r&apos;src=&quot;(.+?\.jpg)&quot; style=&apos;
-    imgre = re.compile(reg)
-    imglist = re.findall(imgre, html)
-    x = 0
-    for imgurl in imglist:
-        urllib.request.urlretrieve(imgurl,&apos;D:\\test\\%s.jpg&apos; % x)
-        x+=1
-
-
-html = getHtml(&quot;https://tieba.baidu.com/p/2855718935#!/l/p1&quot;)
-
-getImg(html)     
-</code></pre><h2 id="一个爬取过滤掉图片的段子的程序"><a href="#一个爬取过滤掉图片的段子的程序" class="headerlink" title="一个爬取过滤掉图片的段子的程序"></a>一个爬取过滤掉图片的段子的程序</h2><pre><code>import urllib
-import urllib.request
-import re
-
-
-url = &apos;https://www.qiushibaike.com/history/&apos;
-
-
-headers = {&apos;User-Agent&apos;:&apos;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.108 Safari/537.36 2345Explorer/8.6.2.15784&apos;}
-
-request = urllib.request.Request(url = url, headers = headers)
-response = urllib.request.urlopen(request)
-
-
-
-content = response.read().decode(&apos;utf-8&apos;)
-pattern=re.compile(&apos;&lt;div.*?author clearfix&quot;&gt;.*?&lt;h2&gt;(.*?)&lt;/h2&gt;.*?&lt;div.*?&lt;span&gt;.*?content&quot;&gt;.*?(.*?)&lt;/span&gt;.*?&lt;/div&gt;.*?&lt;img src=&quot;(.*?)&quot; alt=.*?&gt;.*?&lt;/i&gt;&apos;,re.S)
-items = re.findall(pattern,content)
-for item in items:
-    haveImg = re.search(&quot;img&quot;,item[2])
-    if not haveImg:
-        print(item[0],item[1])
-</code></pre>
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你，good lucky~<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
         </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/18/一个具有翻译功能的爬虫/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/09/21/用flask写一个搜索引擎/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          用flask写一个搜索引擎
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/07/17/有关正则表达式/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">有关正则表达式</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
+    
 
 
           </div>
@@ -395,8 +214,8 @@ for item in items:
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
