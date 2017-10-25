@@ -6,14 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | stylem</title>
+  <title>实现登录、注销、增添文章 | stylem</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="stylem">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="跟着一个教程看了几天才让这个程序正常运行，并实现用户登录、注销和增添文章。连接的是SQLite数据库，程序看起来比较易懂。但是有的需要注意的点不知道的话，再苦思冥想也没用。还是要好好看着教程一步一步来最好。 代码和解释如下：程序的结构是这样">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实现登录、注销、增添文章">
+<meta property="og:url" content="http://yoursite.com/2017/10/25/实现登录、注销、增添文章“/index.html">
 <meta property="og:site_name" content="stylem">
+<meta property="og:description" content="跟着一个教程看了几天才让这个程序正常运行，并实现用户登录、注销和增添文章。连接的是SQLite数据库，程序看起来比较易懂。但是有的需要注意的点不知道的话，再苦思冥想也没用。还是要好好看着教程一步一步来最好。 代码和解释如下：程序的结构是这样">
+<meta property="og:image" content="https://i.imgur.com/jmONATo.jpg">
+<meta property="og:image" content="https://i.imgur.com/tpzOHYy.jpg">
+<meta property="og:image" content="https://i.imgur.com/B87F5Fh.jpg">
+<meta property="og:image" content="https://i.imgur.com/jFQZBNH.jpg">
+<meta property="og:updated_time" content="2017-10-25T11:11:04.895Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="stylem">
+<meta name="twitter:title" content="实现登录、注销、增添文章">
+<meta name="twitter:description" content="跟着一个教程看了几天才让这个程序正常运行，并实现用户登录、注销和增添文章。连接的是SQLite数据库，程序看起来比较易懂。但是有的需要注意的点不知道的话，再苦思冥想也没用。还是要好好看着教程一步一步来最好。 代码和解释如下：程序的结构是这样">
+<meta name="twitter:image" content="https://i.imgur.com/jmONATo.jpg">
   
     <link rel="alternative" href="/atom.xml" title="stylem" type="application/atom+xml">
   
@@ -149,295 +158,314 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="实现登录、注销、增添文章 hexo new flask-sqlite-实现登录、注销、增添文章“" class="article article-type-实现登录、注销、增添文章 hexo new flask-sqlite " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      实现登录、注销、增添文章
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-实现登录、注销、增添文章 hexo new flask-sqlite">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/25/实现登录、注销、增添文章“/" class="archive-article-date">
+
+        
+        <a href="/2017/10/25/实现登录、注销、增添文章“/" class="archive-article-date">
   	<time datetime="2017-10-25T10:09:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-25</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/25/实现登录、注销、增添文章“/">实现登录、注销、增添文章</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>跟着一个教程看了几天才让这个程序正常运行，并实现用户登录、注销和增添文章。连接的是SQLite数据库，程序看起来比较易懂。但是有的需要注意的点不知道的话，再苦思冥想也没用。还是要好好看着教程一步一步来最好。</p>
+<h3 id="代码和解释如下："><a href="#代码和解释如下：" class="headerlink" title="代码和解释如下："></a>代码和解释如下：</h3><p><strong>程序的结构是这样</strong><br><img src="https://i.imgur.com/jmONATo.jpg" alt=""><br><a id="more"></a><br><strong>1.st——main.py  (定义路由进行后端处理、运行程序的入口）</strong>    </p>
+<pre><code>from flask import Flask,request,render_template,redirect,url_for
+from config import DevConfig
+from flask.ext.sqlalchemy import SQLAlchemy
+from flask import request,render_template,flash,abort,url_for,redirect,session,Flask,g
 
-        <div class="article-info info-on-right">
-          
-          
+app=Flask(__name__)
+db=SQLAlchemy(app)
+app.config.from_object(DevConfig )
+app.config[&apos;SECRET_KEY&apos;] = &apos;\xaf\xd48\xbd7\xb49\xa8\x86\x8b\x1fL\xc9\x1eB\xa8\xa17a\xcf96\xfe\xa3&apos;
 
+
+class User(db.Model):
+    id=db.Column(db.Integer(),primary_key= True)
+    username=db.Column (db.String(255))
+    password=db.Column (db.String(255))
+    posts = db.relationship(
+        &apos;Post&apos;,
+        backref=&apos;user&apos;,
+        lazy=&apos;dynamic&apos;
+    )
+    def __init__(self,id,username,password):
+        self.username=username
+        self.password=password
+
+    def __repr__(self):
+        return &quot;&lt;User &apos;{}&apos;&gt;&quot;.format(self.username)
+
+
+class Post(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    title=db.Column(db.String(255))
+    text=db.Column(db.String(255))
+    publish_date=db.Column(db.DateTime())
+    user_id=db.Column(db.Integer(),db.ForeignKey (&apos;user.id&apos;))
+    def __init__(self,title,text):
+        self.title=title
+        self.text=text
+    def __repr__(self):
+
+        return &quot;&lt;Post &apos;{}&apos;&gt;&quot;.format(self.title,self.text)
+
+
+@app.route(&apos;/&apos;)
+def show_entries():
+    user=User.query.get(2)
+    posts =user.posts.all()
+    return render_template(&apos;show_entries.html&apos;, posts=posts,user=user)
+
+@app.route(&apos;/add&apos;, methods=[&apos;POST&apos;])
+def add_entry():
+    if not session.get(&apos;logged_in&apos;):
+        abort(401)
+    title = request.form[&apos;title&apos;]
+    text = request.form[&apos;text&apos;]
+    new_post = Post(title,text)
+    new_post.user_id=user.id
+    db.session.add(new_post)
+    db.session.commit()
+    flash(&apos;New entry was successfully posted&apos;)
+    return redirect(url_for(&apos;show_entries&apos;))
+
+@app.route(&apos;/login&apos;, methods=[&apos;GET&apos;, &apos;POST&apos;])
+def login():
+    error = None
+    if request.method == &apos;POST&apos;:
+        username = request.form[&apos;username&apos;]
+        password = request.form[&apos;password&apos;]
+        user = User.query.filter_by(username=request.form[&apos;username&apos;]).first()
+        passwd = User.query.filter_by(password=request.form[&apos;password&apos;]).first()
+        if user is None:
+            error = &apos;Invalid username&apos;
+            return render_template(&apos;login.html&apos;, error=error)
+        elif passwd is None:
+            error = &apos;Invalid password&apos;
+            return render_template(&apos;login.html&apos;, error=error)
+        else:
+            session[&apos;logged_in&apos;] = True
+            flash(&apos;You were logged in&apos;)
+            return redirect(url_for(&apos;show_entries&apos;))
+    return render_template(&apos;login.html&apos;, error=error)
+
+@app.route(&apos;/logout&apos;)
+def logout():
+    session.pop(&apos;logged_in&apos;, None)
+    flash(&apos;You were logged out&apos;)
+    return redirect(url_for(&apos;show_entries&apos;))
+
+if __name__ == &apos;__main__&apos;:
+    app.run()    
+</code></pre><p>在这部分遇到的一个问题一直没找出来，看了很久。<br>程序一运行碰到session就出错，我本来以为session就是一个可以设置全局变量的东西，不需要别的配置什么的。<br>后来百度得知 要想让session实现对话，就要配置一个’SECRET_KEY’     </p>
+<pre><code>app.config[&apos;SECRET_KEY&apos;] = &apos;\xaf\xd48\xbd7\xb49\xa8\x86\x8b\x1fL\xc9\x1eB\xa8\xa17a\xcf96\xfe\xa3&apos;     
+</code></pre><p>在这里我用的是命令行随意生成的一个密钥        </p>
+<pre><code>&gt;&gt;&gt;import os     
+&gt;&gt;&gt;os.urandom(24)     
+</code></pre><p><strong>2.nd——config.py  (连接SQLite数据库的配置文件）</strong>       </p>
+<pre><code>class Config(object):
+    pass
+
+class ProdConfig(Config):
+    pass
+
+class DevConfig(Config):
+    debug=True
+    SQLALCHEMY_DATABASE_URI=&quot;sqlite:///database1.db&quot;
+    SQLALCHEMY_COMMIT_ON_TEARDOWN=True
+</code></pre><p><strong>3.rd——layout.py  (注销用户、同时作为一个基模板让每一个用户已经登录的页面都可以实现注销功能）</strong>       </p>
+<pre><code>&lt;!doctype html&gt;
+&lt;title&gt;Flaskr&lt;/title&gt;
+&lt;link rel=stylesheet type=text/css href=&quot;{{ url_for('static', filename='style.css') }}&quot;&gt;
+&lt;div class=page&gt;
+ &lt;h1&gt;Flaskr&lt;/h1&gt;
+ &lt;div class=metanav&gt;
+ {% if not session.logged_in %}
+	  <a href="{{ url_for('login') }}">login</a>
+	 {% else %}
+	  <a href="{{ url_for('logout') }}">logout</a>
+	 {% endif %}
+ &lt;/div&gt;
+ {% for message in get_flashed_messages() %}
+	  <div class="flash">{{ message }}</div>
+	 {% endfor %}
+ {% block body %}{% endblock %}
+	  
+		    
+      
+url_for 可以让程序转到main.py中的login函数，然后显示出登陆的界面，并在函数中进行数据处理      
+      
+**4.th——show_entries.py  (判断为登录状态便可以让用户增加文章、显示所有文章）**     
+     
+     
+	{% extends "layout.html" %}
+	{% block body %}
+	 {% if session.logged_in %}
+	  <form action="{{ url_for('add_entry') }}" method="POST" class="add-entry">
+	   <dl>
+	    <dt>Title:
+	    <dd><input type="text" size="30" name="title">
+	    <dt>Text:
+	    <dd><textarea name="text" rows="5" cols="40"></textarea>
+	    <dd><input type="submit" value="Share">
+	   </dd></dd></dt></dd></dt></dl>
+	  </form>
+	 {% endif %}
+	
+	 <ul class="posts">
+	 {% for post in posts %}
+	  <li><h2>{{ post.title }}</h2>{{ post.text|safe }}
+	 {% else %}
+	  </li><li><em>Unbelievable. No texts here so far</em>
+	 {% endfor %}
+	
+	 </li></ul>
+	{% endblock %}       
+</code></pre><p>session.logged_in 是用来判断用户是否为登录状态，如果为登录状态就可以实现增加文章的功能。         </p>
+<p><strong>5.th——manager.py(通过命令行运行开发环境服务器)</strong>        </p>
+<pre><code>from flask.ext.script import Manager,Server
+from main import app,db,User,Post
+manager=Manager(app)
+
+
+manager.add_command(&quot;Server&quot;,Server())
+
+@manager.shell
+def make_shell_context():
+    return dict(app=app,db=db,User=User,Post=Post)
+
+if __name__==&quot;__main__&quot;:
+    manager.run()        
+</code></pre><p>make_shell_context函数会创建一个python命令行，并且在应用上下文中执行。返回的字典告诉flask—script在打开命令行时进行一些默认的导入工作。     </p>
+<h1 id="效果图："><a href="#效果图：" class="headerlink" title="效果图："></a>效果图：</h1><p><img src="https://i.imgur.com/tpzOHYy.jpg" alt="">         </p>
+<p>这个程序很多功能都不完善。我数据库存了两个用户，这个是显示的我第二个用户所有文章。也是程序运行看到的第一个页面。     </p>
+<p><img src="https://i.imgur.com/B87F5Fh.jpg" alt="">     </p>
+<p>这个页面是实现了登录我第二个用户后，能看到的增加文章的功能页面。     </p>
+<p><img src="https://i.imgur.com/jFQZBNH.jpg" alt="">       </p>
+<p>这个是我新增一篇文章后显示的所有文章，可以看到这个功能的实现。    </p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你，good lucky~<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/25/实现登录、注销、增添文章“/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/21/用flask写一个搜索引擎/" class="archive-article-date">
-  	<time datetime="2017-09-21T11:26:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-21</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/21/用flask写一个搜索引擎/">用flask写一个搜索引擎</a>
-    </h1>
+  
+    <a href="/2017/09/21/用flask写一个搜索引擎/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">用flask写一个搜索引擎</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/18/一个具有翻译功能的爬虫/" class="archive-article-date">
-  	<time datetime="2017-07-18T08:57:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/18/一个具有翻译功能的爬虫/">几个简陋的爬虫程序</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/17/有关正则表达式/" class="archive-article-date">
-  	<time datetime="2017-07-17T09:32:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/17/有关正则表达式/">有关正则表达式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/15/测试多线程中join函数的功能/" class="archive-article-date">
-  	<time datetime="2017-07-15T07:03:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/15/测试多线程中join函数的功能/">测试多线程中join函数的功能</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/13/端口扫描技术/" class="archive-article-date">
-  	<time datetime="2017-07-13T08:04:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/13/端口扫描技术/">端口扫描技术</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/12/多进程、多线程的学习/" class="archive-article-date">
-  	<time datetime="2017-07-12T06:28:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/12/多进程、多线程的学习/">多进程、多线程的学习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/09/更优雅的Python/" class="archive-article-date">
-  	<time datetime="2017-07-09T09:59:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/09/更优雅的Python/">更优雅的Python</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/07/python高级特性/" class="archive-article-date">
-  	<time datetime="2017-07-07T07:05:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/07/python高级特性/">python高级特性</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/07/python编码规范/" class="archive-article-date">
-  	<time datetime="2017-07-07T02:55:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/07/python编码规范/">python编码规范</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -461,8 +489,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
