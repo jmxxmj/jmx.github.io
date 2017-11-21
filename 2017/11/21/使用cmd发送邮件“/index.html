@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 
 
-  <html class="light page-post">
+  <html class="light page-”flask-email">
 
 
 <head>
   <meta charset="utf-8">
   
-  <title>http协议随手记 | stylem</title>
+  <title>使用cmd发送邮件 | stylem</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,16 +15,16 @@
     <meta name="keywords" content="forsigner,前端,设计,Hexo主题,前端开发,用户体验,设计,frontend,design,nodejs,JavaScript" />
   
 
-  <meta name="description" content="这一段时间一直在看flask，能实现一些很基本的功能，可是实在看不下去了，就想看一点关于’web 安全’别的知识,所以来学习http协议，那就学着记录着吧…">
+  <meta name="description" content="刚开始准备直接加上路由用flask-email发送邮件，看了好多次都没有成功，然后感觉有个事情一直在脑海里回旋… 今天看教程，又从前边开始看，开始学习用cmd发送邮件，记录一下吧">
 <meta property="og:type" content="article">
-<meta property="og:title" content="http协议随手记">
-<meta property="og:url" content="http://yoursite.com/2017/11/08/http协议随手记/index.html">
+<meta property="og:title" content="使用cmd发送邮件">
+<meta property="og:url" content="http://yoursite.com/2017/11/21/使用cmd发送邮件“/index.html">
 <meta property="og:site_name" content="stylem">
-<meta property="og:description" content="这一段时间一直在看flask，能实现一些很基本的功能，可是实在看不下去了，就想看一点关于’web 安全’别的知识,所以来学习http协议，那就学着记录着吧…">
-<meta property="og:updated_time" content="2017-11-08T09:01:20.024Z">
+<meta property="og:description" content="刚开始准备直接加上路由用flask-email发送邮件，看了好多次都没有成功，然后感觉有个事情一直在脑海里回旋… 今天看教程，又从前边开始看，开始学习用cmd发送邮件，记录一下吧">
+<meta property="og:updated_time" content="2017-11-21T13:56:34.946Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="http协议随手记">
-<meta name="twitter:description" content="这一段时间一直在看flask，能实现一些很基本的功能，可是实在看不下去了，就想看一点关于’web 安全’别的知识,所以来学习http协议，那就学着记录着吧…">
+<meta name="twitter:title" content="使用cmd发送邮件">
+<meta name="twitter:description" content="刚开始准备直接加上路由用flask-email发送邮件，看了好多次都没有成功，然后感觉有个事情一直在脑海里回旋… 今天看教程，又从前边开始看，开始学习用cmd发送邮件，记录一下吧">
 
   
 
@@ -183,20 +183,20 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么叫HTTP协议？"><span class="toc-text">什么叫HTTP协议？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#我们为什么能够看见网页？"><span class="toc-text">我们为什么能够看见网页？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#我们与服务器交互有哪些方法，区别是什么？"><span class="toc-text">我们与服务器交互有哪些方法，区别是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#我们访问网页会看到的数字是什么意思？"><span class="toc-text">我们访问网页会看到的数字是什么意思？</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#刚开始准备直接加上路由用flask-email发送邮件，看了好多次都没有成功，然后感觉有个事情一直在脑海里回旋…-今天看教程，又从前边开始看，开始学习用cmd发送邮件，记录一下吧"><span class="toc-text">刚开始准备直接加上路由用flask-email发送邮件，看了好多次都没有成功，然后感觉有个事情一直在脑海里回旋… 今天看教程，又从前边开始看，开始学习用cmd发送邮件，记录一下吧</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-http协议随手记" class="article article-type-post" itemprop="blogPost">
+   <article id="”flask-email-使用cmd发送邮件“" class="article article-type-”flask-email" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">http协议随手记</h1>
+    <h1 class="post-title">使用cmd发送邮件</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2017.11.08</span>
+        <span>2017.11.21</span>
       </span>
 
       
@@ -212,7 +212,7 @@
       
         <span>
           <i class="icon-comment"></i>
-          <a href="http://www.forsigner.com/2017/11/08/http协议随手记/#disqus_thread"></a>
+          <a href="http://www.forsigner.com/2017/11/21/使用cmd发送邮件“/#disqus_thread"></a>
         </span>
       
 
@@ -231,26 +231,26 @@
 
   <div class="article-content">
     
-      <p>这一段时间一直在看flask，能实现一些很基本的功能，可是实在看不下去了，就想看一点关于’web 安全’别的知识,所以来学习http协议，那就学着记录着吧…<br>  <a id="more"></a>   </p>
-<h3 id="什么叫HTTP协议？"><a href="#什么叫HTTP协议？" class="headerlink" title="什么叫HTTP协议？"></a>什么叫HTTP协议？</h3><pre><code>-协议是指计算机通信网络中两台计算机之间进行通信所必须共同遵守的规定或规则， 超文本传输协议(HTTP)是一种通信协议，它允许将超文本标记语言(HTML)文档从Web服务器传送到客户端的浏览器。    
-</code></pre><h3 id="我们为什么能够看见网页？"><a href="#我们为什么能够看见网页？" class="headerlink" title="我们为什么能够看见网页？"></a>我们为什么能够看见网页？</h3><pre><code>-我们输入URL在浏览器上，浏览器给Web服务器一个request请求,Web服务器接受到这个request，会生成一个response回应给浏览器，这个时候，浏览器将response中的html解析成我们看到的网页。
-</code></pre><h3 id="我们与服务器交互有哪些方法，区别是什么？"><a href="#我们与服务器交互有哪些方法，区别是什么？" class="headerlink" title="我们与服务器交互有哪些方法，区别是什么？"></a>我们与服务器交互有哪些方法，区别是什么？</h3><pre><code>-最常用的两个交互方法是Get方法和Post方法；     
+      <h3 id="刚开始准备直接加上路由用flask-email发送邮件，看了好多次都没有成功，然后感觉有个事情一直在脑海里回旋…-今天看教程，又从前边开始看，开始学习用cmd发送邮件，记录一下吧"><a href="#刚开始准备直接加上路由用flask-email发送邮件，看了好多次都没有成功，然后感觉有个事情一直在脑海里回旋…-今天看教程，又从前边开始看，开始学习用cmd发送邮件，记录一下吧" class="headerlink" title="刚开始准备直接加上路由用flask-email发送邮件，看了好多次都没有成功，然后感觉有个事情一直在脑海里回旋… 今天看教程，又从前边开始看，开始学习用cmd发送邮件，记录一下吧"></a>刚开始准备直接加上路由用flask-email发送邮件，看了好多次都没有成功，然后感觉有个事情一直在脑海里回旋… 今天看教程，又从前边开始看，开始学习用cmd发送邮件，记录一下吧</h3><a id="more"></a>     
+<p><strong>first</strong>—<br>Flask-Mail连接到简单邮件传输协议（SMTP），并且把邮件交给这个服务器发送。连接到外部SMTP服务器，需要对其进行配置<br>        from flask.ext.mail import Mail<br>        app.config[‘MAIL_SERVER’] = ‘smtp.qq.com’<br>        app.config[‘MAIL_PORT’] = 465<br>        app.config[‘MAIL_USE_SSL’] = True<br>        app.config[‘MAIL_USERNAME’] = ‘xxxx@qq.com’<br>        app.config[‘MAIL_PASSWORD’] = ‘<strong><strong><strong><em>**</em></strong></strong></strong>‘<br>        app.config[‘MAIL_DEFAULT_SENDER’]=’xxxx@qq.com’    </p>
+<p>这部分要注意的点有：<br>    app.config[‘MAIL_USE_SSL’] = True  SSL要设置为TRUE模式<br>    ‘MAIL_USERNAME’：这个是你邮箱号 ‘MAIL_PASSWORD’：这个是你通过发送短信后获得的授权码    </p>
+<pre><code>关于发送短信是在自己的邮箱上设置开启SMTP    
+</code></pre><p><strong>second</strong>    </p>
+<pre><code>&gt;&gt;&gt; import os
+&gt;&gt;&gt; os.environ.get(&apos;MAIL_PASSWORD&apos;)
+&apos;pbxoxpsadyeqdegg&apos;
+&gt;&gt;&gt; from flask.ext.mail import Message
+&gt;&gt;&gt; from mi import mail
+&gt;&gt;&gt; msg = Message(&apos;test subject&apos;, sender=&apos;1808240625@qq.com&apos;,recipients=[&apos;1808240625@qq.com&apos;])
+&gt;&gt;&gt; msg.body = &apos;text body&apos;
+&gt;&gt;&gt; msg.html = &apos;&lt;b&gt;HTML&lt;/b&gt; body&apos;
+&gt;&gt;&gt; with app.app_context():
+...    mail.send(msg)
+...
+&gt;&gt;&gt;     
+</code></pre><p>这里要注意的点是：<br>    配置中的MAIL-USERNAME MAIL-PASSWORD要加在环境变量中去，其中PASSWORD也就是授权码，要注意的是！！！！！–》授权码中的16位中间没有空格！！！    </p>
+<p>这样就可以发送了…</p>
 
-1.GET方法提交的数据会放在URL之后，以?分割URL和传输数据，参数之间以&amp;相连，而POST方法提交数据是看不见的，它是存放在HTP的BODY中；    
-
-2.由于URL长度的限制，所以GET提交的数据长度有限制；POST方法提交数据没有限制；   
-
-3.获取URL中GET提交的参数时，要用request.query；获取POST值用request.Form方法；
-
-4.从安全性来说，POST较GET方法来说安全性更高；
-</code></pre><h3 id="我们访问网页会看到的数字是什么意思？"><a href="#我们访问网页会看到的数字是什么意思？" class="headerlink" title="我们访问网页会看到的数字是什么意思？"></a>我们访问网页会看到的数字是什么意思？</h3><pre><code>-HTTP/1.1中定义的五类状态码：
-
- 1**？ 提示信息：表示请求已被接收，继续处理；
- 2**？（如200）成功：表示请求已被成功接收，理解；
- 3**？ 重定向：要完成请求必须进行更进一步的处理；
- 4**？ 客户端错误：请求有语法错误或请求无法实现；
- 5**？ 服务器端错误：服务器未能实现合法的请求；    
-</code></pre>
     
   </div>
 </article>
@@ -280,10 +280,10 @@
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2017/10/25/实现登录、注销、增添文章“/">
+    <a class="show pull-left" href="/2017/11/08/http协议随手记/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2017/11/21/使用cmd发送邮件“/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
@@ -397,7 +397,7 @@
 
 
   
-      <div class="fexo-comments comments-post">
+      <div class="fexo-comments comments-”flask-email">
     
   <section class="disqus-comments">
     <div id="disqus_thread">
@@ -408,7 +408,7 @@
   <script>
     var disqus_shortname = 'forsigner';
     
-    var disqus_url = 'http://yoursite.com/2017/11/08/http协议随手记/';
+    var disqus_url = 'http://yoursite.com/2017/11/21/使用cmd发送邮件“/';
     
     (function(){
       var dsq = document.createElement('script');
