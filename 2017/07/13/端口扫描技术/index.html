@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>端口扫描技术 | stylem</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="forsigner,前端,设计,Hexo主题,前端开发,用户体验,设计,frontend,design,nodejs,JavaScript" />
+  
+
+  <meta name="description" content="使用单线程的简单端口扫描器程序由以下几部分组成：1.读取端口及目标服务器2.测试TCP端口连接3.输出开放端口结果">
+<meta property="og:type" content="article">
+<meta property="og:title" content="端口扫描技术">
+<meta property="og:url" content="http://yoursite.com/2017/07/13/端口扫描技术/index.html">
+<meta property="og:site_name" content="stylem">
+<meta property="og:description" content="使用单线程的简单端口扫描器程序由以下几部分组成：1.读取端口及目标服务器2.测试TCP端口连接3.输出开放端口结果">
+<meta property="og:image" content="http://i.imgur.com/VBPG8Mh.jpg">
+<meta property="og:image" content="http://i.imgur.com/u6fJD93.jpg">
+<meta property="og:image" content="http://i.imgur.com/M6aXiG8.jpg">
+<meta property="og:updated_time" content="2017-07-13T09:30:09.470Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="端口扫描技术">
+<meta name="twitter:description" content="使用单线程的简单端口扫描器程序由以下几部分组成：1.读取端口及目标服务器2.测试TCP端口连接3.输出开放端口结果">
+<meta name="twitter:image" content="http://i.imgur.com/VBPG8Mh.jpg">
+
+  
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用单线程的简单端口扫描器"><span class="toc-text">使用单线程的简单端口扫描器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一个使用多线程的简单端口扫描器"><span class="toc-text">一个使用多线程的简单端口扫描器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nmap-功能强大的Python端口扫描包"><span class="toc-text">nmap 功能强大的Python端口扫描包</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-端口扫描技术" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">端口扫描技术</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.07.13</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>stylem</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.forsigner.com/2017/07/13/端口扫描技术/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="使用单线程的简单端口扫描器"><a href="#使用单线程的简单端口扫描器" class="headerlink" title="使用单线程的简单端口扫描器"></a>使用单线程的简单端口扫描器</h2><p><strong>程序由以下几部分组成：</strong><br><strong>1.读取端口及目标服务器</strong><br><strong>2.测试TCP端口连接</strong><br><strong>3.输出开放端口结果</strong><br><a id="more"></a></p>
+<pre><code>#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import sys
+from socket import *
+
+# port_scan.py &lt;host&gt; &lt;start_port&gt;-&lt;end_port&gt;
+host = sys.argv[1]
+portstrs = sys.argv[2].split(&apos;-&apos;)
+
+start_port = int(portstrs[0])
+end_port = int(portstrs[1])
+
+target_ip = gethostbyname(host)
+opened_ports = []
+
+for port in range(start_port, end_port):
+    sock = socket(AF_INET, SOCK_STREAM)
+    sock.settimeout(10)
+result = sock.connect_ex((target_ip, port))
+if result == 0:
+   opened_ports.append(port)
+
+
+print(&quot;Opened ports:&quot;)
+
+for i in opened_ports:
+    print(i) 
+</code></pre><p><strong>在cmd上测试就可以知道处于开放状态的端口有哪些</strong><br><strong>这个网站是常用的端口号与其对应的服务：</strong><br><a href="http://www.docin.com/p-297998574.html" target="_blank" rel="external">http://www.docin.com/p-297998574.html</a>    </p>
+<h2 id="一个使用多线程的简单端口扫描器"><a href="#一个使用多线程的简单端口扫描器" class="headerlink" title="一个使用多线程的简单端口扫描器"></a>一个使用多线程的简单端口扫描器</h2><pre><code>#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import sys
+import thread
+from socket import *
+
+def tcp_test(port):
+sock = socket(AF_INET, SOCK_STREAM)
+sock.settimeout(10)
+result = sock.connect_ex((target_ip, port))
+if result == 0:
+    lock.acquire()
+    print &quot;Opened Port:&quot;,port
+    lock.release()
+
+
+if __name__==&apos;__main__&apos;:
+    # portscan.py &lt;host&gt; &lt;start_port&gt;-&lt;end_port&gt;    
+
+    host = sys.argv[1]
+    portstrs = sys.argv[2].split(&apos;-&apos;)
+
+    start_port = int(portstrs[0])
+    end_port = int(portstrs[1])
+
+    target_ip = gethostbyname(host)
+
+    lock = thread.allocate_lock()
+
+    for port in range(start_port, end_port):
+       thread.start_new_thread(tcp_test, (port,))         
+</code></pre><h2 id="nmap-功能强大的Python端口扫描包"><a href="#nmap-功能强大的Python端口扫描包" class="headerlink" title="nmap 功能强大的Python端口扫描包"></a>nmap 功能强大的Python端口扫描包</h2><p><strong>nmap的四项基本功能：</strong><br><strong>1.主机发现</strong><br>主机发现发现的原理与Ping命令类似，发送探测包到目标主机，如果收到回复，那么说明目标主机是开启的。<br><strong>主机发现的探测方式 图:</strong>    </p>
+<p>   <img src="http://i.imgur.com/VBPG8Mh.jpg" alt=""><br><strong>扫描某范围内哪些IP的主机是活动的</strong><br>比如：nmap -sn 192.168.1.100-120 </p>
+<p>///////    </p>
+<p><strong>2.端口扫描</strong>     </p>
+<p><strong>端口的六个状态</strong>    </p>
+<p>open：端口是开放的。    </p>
+<p>closed：端口是关闭的。    </p>
+<p>filtered：端口被防火墙IDS/IPS屏蔽，无法确定其状态。    </p>
+<p>unfiltered：端口没有被屏蔽，但是否开放需要进一步确定。    </p>
+<p>closed|filtered ：端口是关闭的或被屏蔽。    </p>
+<p><strong>扫描方式选项</strong><br><img src="http://i.imgur.com/u6fJD93.jpg" alt="">     </p>
+<p><strong>端口参数</strong>    </p>
+<p><img src="http://i.imgur.com/M6aXiG8.jpg" alt="">  </p>
+<p>///////<br><strong>3.版本侦测</strong>    </p>
+<p><strong>4.操作系统侦测</strong>    </p>
+
+    
+  </div>
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul class="theme.donation.items.length">
+        
+          <li class="item">
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2017/07/12/多进程、多线程的学习/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2017/07/15/测试多线程中join函数的功能/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://yoursite.com/2017/07/13/端口扫描技术/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+    
+
+    
+	
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

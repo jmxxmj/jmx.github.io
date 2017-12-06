@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>用flask写一个搜索引擎 | stylem</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="forsigner,前端,设计,Hexo主题,前端开发,用户体验,设计,frontend,design,nodejs,JavaScript" />
+  
+
+  <meta name="description" content="写这个简陋的搜索引擎主要是能让我对flask框架有一定的认识，所以我把它记录下来     一个.py主文件     # -*- coding: utf-8 -*- from flask import Flask from flask import render_template from flask import request import urllib.request from flask_b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用flask写一个搜索引擎">
+<meta property="og:url" content="http://yoursite.com/2017/09/21/用flask写一个搜索引擎/index.html">
+<meta property="og:site_name" content="stylem">
+<meta property="og:description" content="写这个简陋的搜索引擎主要是能让我对flask框架有一定的认识，所以我把它记录下来     一个.py主文件     # -*- coding: utf-8 -*- from flask import Flask from flask import render_template from flask import request import urllib.request from flask_b">
+<meta property="og:updated_time" content="2017-09-21T12:03:54.944Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用flask写一个搜索引擎">
+<meta name="twitter:description" content="写这个简陋的搜索引擎主要是能让我对flask框架有一定的认识，所以我把它记录下来     一个.py主文件     # -*- coding: utf-8 -*- from flask import Flask from flask import render_template from flask import request import urllib.request from flask_b">
+
+  
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#重要的函数实现："><span class="toc-text">重要的函数实现：</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-用flask写一个搜索引擎" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">用flask写一个搜索引擎</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.09.21</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>stylem</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.forsigner.com/2017/09/21/用flask写一个搜索引擎/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p><strong>写这个简陋的搜索引擎主要是能让我对flask框架有一定的认识，所以我把它记录下来</strong>    </p>
+<p>一个.py主文件    </p>
+<pre><code># -*- coding: utf-8 -*-
+from flask import Flask
+from flask import render_template
+from flask import request
+import urllib.request
+from flask_bootstrap import Bootstrap
+app=Flask(__name__)
+</code></pre><a id="more"></a>
+<pre><code>bootstrap=Bootstrap(app)
+ #name为当前的主文件名
+
+def getHtml(wd,pn):
+    req=urllib.request.Request(&apos;https://www.baidu.com/s?wd=%s&amp;pn=%s&apos; %(wd,pn))
+    req.add_header(&apos;User-Agent&apos;,&apos;Mozilla/5.0 (Windows NT 10.0; WOW64; rv:55.0) Gecko/20100101 Firefox/55.0&apos;)
+    return urllib.request.urlopen(req).read()
+
+#装饰器
+@app.route(&apos;/&apos;)#定义路由
+def index():
+    return render_template(&apos;querry.html&apos;)
+
+@app.route(&apos;/s&apos;)
+def search():
+    if request.method==&apos;GET&apos;:
+        wd=request.args.get(&apos;wd&apos;)
+        wd=urllib.request.quote(wd.encode(&apos;utf-8&apos;))
+        pn = request.args.get(&apos;pn&apos;)
+        return getHtml(wd,pn)
+    else:
+        return None
+
+if __name__==&apos;__main__&apos;:
+    app.debug=True
+    app.run()
+</code></pre><p>一个template文件夹下的.html文件     </p>
+<pre><code>&lt;h1&gt;一个搜索引擎的页面&lt;/h1&gt;
+
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;搜索界面&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body bgcolor=&quot;#C0C0C0&quot;&gt;
+&lt;form action=&quot;/s&quot; method=&quot;get&quot;&gt;
+    &lt;input type=&quot;text&quot; class=&quot;txt&quot; name=&quot;wd&quot;  id=&quot;txt&quot;/&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-success&quot;&gt;百度一下&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p><strong>这个html文件就是展现出来的搜索页面，如果用到css、bootstrap、js等就会有一个吸引人的页面</strong>     </p>
+<h3 id="重要的函数实现："><a href="#重要的函数实现：" class="headerlink" title="重要的函数实现："></a>重要的函数实现：</h3><pre><code> # 搜索函数
+@app.route(&apos;/s&apos;)
+def search():
+    if request.method==&apos;GET&apos;:
+        wd=request.args.get(&apos;wd&apos;) #因为你搜索的关键词都在wd参数中，所以用args解析得到的wd就是你搜索的词
+
+        wd=urllib.request.quote(wd.encode(&apos;utf-8&apos;))#编码成utf-8，输入搜索词汇可以输入中文
+
+        pn = request.args.get(&apos;pn&apos;)#这里的pn参数控制搜索的页数，不加pn的话只能搜索到第一页内容
+
+        return getHtml(wd,pn)
+    else:
+        return None
+
+
+
+ # 获取访问页面     
+
+        def getHtml(wd,pn):
+            req=urllib.request.Request(&apos;https://www.baidu.com/s?wd=%s&amp;pn=%s&apos; %(wd,pn))#得到两个参数之后要把相应的url读取出来
+
+            req.add_header(&apos;User-Agent&apos;,&apos;Mozilla/5.0 (Windows NT 10.0; WOW64; rv:55.0) Gecko/20100101 Firefox/55.0&apos;)#模拟浏览器访问，所以增加一个header
+
+            return urllib.request.urlopen(req).read()    
+</code></pre>
+    
+  </div>
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul class="theme.donation.items.length">
+        
+          <li class="item">
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2017/07/18/一个具有翻译功能的爬虫/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2017/10/25/实现登录、注销、增添文章“/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://yoursite.com/2017/09/21/用flask写一个搜索引擎/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+    
+
+    
+	
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

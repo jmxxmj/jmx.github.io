@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>python高级特性 | stylem</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="forsigner,前端,设计,Hexo主题,前端开发,用户体验,设计,frontend,design,nodejs,JavaScript" />
+  
+
+  <meta name="description" content="由一个例子来开启python高级特性的学习吧~     构造一个列表 1，3，5，7，9，…,99你会想到可以用一个循环来实现:(注意空格缩进）       &amp;gt;&amp;gt;&amp;gt;L=[]       &amp;gt;&amp;gt;&amp;gt;n=1     &amp;gt;&amp;gt;&amp;gt;while n &amp;lt;= 99:        L.append(n)        n=n+2     切片">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python高级特性">
+<meta property="og:url" content="http://yoursite.com/2017/07/07/python高级特性/index.html">
+<meta property="og:site_name" content="stylem">
+<meta property="og:description" content="由一个例子来开启python高级特性的学习吧~     构造一个列表 1，3，5，7，9，…,99你会想到可以用一个循环来实现:(注意空格缩进）       &amp;gt;&amp;gt;&amp;gt;L=[]       &amp;gt;&amp;gt;&amp;gt;n=1     &amp;gt;&amp;gt;&amp;gt;while n &amp;lt;= 99:        L.append(n)        n=n+2     切片">
+<meta property="og:updated_time" content="2017-07-11T09:41:36.926Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python高级特性">
+<meta name="twitter:description" content="由一个例子来开启python高级特性的学习吧~     构造一个列表 1，3，5，7，9，…,99你会想到可以用一个循环来实现:(注意空格缩进）       &amp;gt;&amp;gt;&amp;gt;L=[]       &amp;gt;&amp;gt;&amp;gt;n=1     &amp;gt;&amp;gt;&amp;gt;while n &amp;lt;= 99:        L.append(n)        n=n+2     切片">
+
+  
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#切片"><span class="toc-text">切片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代"><span class="toc-text">迭代</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#列表生成式"><span class="toc-text">列表生成式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成器"><span class="toc-text">生成器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#把一个函数改成下边的生成器"><span class="toc-text">把一个函数改成下边的生成器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代器"><span class="toc-text">迭代器</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-python高级特性" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">python高级特性</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.07.07</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>stylem</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.forsigner.com/2017/07/07/python高级特性/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p><strong>由一个例子来开启python高级特性的学习吧~</strong>    </p>
+<p><strong>构造一个列表 1，3，5，7，9，…,99</strong><br>你会想到可以用一个循环来实现:(注意空格缩进）      </p>
+<pre><code>&gt;&gt;&gt;L=[]      
+&gt;&gt;&gt;n=1    
+&gt;&gt;&gt;while n &lt;= 99:    
+   L.append(n)    
+   n=n+2    
+</code></pre><h2 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h2><a id="more"></a> 
+<p><strong>切片可以轻松的取一个list或tuple的部分元素</strong><br>比如&gt;&gt;&gt;L=[‘A’,’B’,’C’]<br>取前三个元素:<br>你可能会想到:&gt;&gt;&gt;[L[0],L[1],L[2]]<br>切片方法：&gt;&gt;&gt;L[0:3]<br>L[0:3]表示从索引0开始取，直到索引3为止，但是不包括索引3。<br><strong>切片的其它表达形式</strong><br>比如&gt;&gt;&gt;L[:]就可以原样复制一个list<br>比如&gt;&gt;&gt;L[::5]表示对一个list每5个取1个<br>比如对一个tuple L=(1,2,3,4,5)效果等同于对list的操作<br>比如字符串L=’ABCDEF’也可以看成是一种list。&gt;&gt;&gt;L[:3]得到的结果是’ABC’<br><strong>切片操作一定程度上可以减少很多循环的麻烦</strong>    </p>
+<h2 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h2><p><strong>什么是迭代？迭代就是可以通过for循环来遍历这个list或者tuple</strong>    </p>
+<p><strong>对于一个dict</strong> (第一种情况:迭代的是key）</p>
+<pre><code>&gt;&gt;&gt;d={&apos;a&apos;: 1, &apos;b&apos;: 2, &apos;c&apos;: 3}    
+&gt;&gt;&gt;for key in d:    
+    print(key)   
+</code></pre><p><strong>输出结果</strong>    </p>
+<pre><code>a    
+c    
+b    
+</code></pre><p><strong>对于一个dict</strong> (第二种情况:迭代的是value）         </p>
+<pre><code>&gt;&gt;&gt;d={&apos;a&apos;: 1, &apos;b&apos;: 2, &apos;c&apos;: 3}    
+&gt;&gt;&gt;for value in d.values():    
+    print(value)    
+</code></pre><p><strong>输出结果</strong>    </p>
+<pre><code>1    
+2    
+3     
+</code></pre><p><strong>对于一个dict</strong> (第三种情况:迭代的是value）         </p>
+<pre><code>&gt;&gt;&gt;d={&apos;a&apos;: 1, &apos;b&apos;: 2, &apos;c&apos;: 3}    
+&gt;&gt;&gt;for k,v in d.items():    
+    print(k,&apos;:&apos;,v)    
+</code></pre><p><strong>输出结果</strong>    </p>
+<pre><code>a : 1    
+b : 2    
+c : 3     
+</code></pre><p><strong>当然，字符串也可以进行迭代</strong>     </p>
+<pre><code>&gt;&gt;&gt; for ch in &apos;ABC&apos;    
+        print(ch)    
+</code></pre><p><strong>输出结果</strong>    </p>
+<pre><code>A    
+B    
+C    
+</code></pre><p><strong>任何可迭代对象都可以作用于for循环，包括我们自定义的数据类型，只要符合迭代条件，就可以使用for循环</strong>    </p>
+<h2 id="列表生成式"><a href="#列表生成式" class="headerlink" title="列表生成式"></a>列表生成式</h2><p><strong>什么是列表生成式？列表生成式是Python内置的非常简单却强大的可以用来创建list的生成式</strong>    </p>
+<p><strong>比如要生成一个list[1, 2, 3, 4, 5]</strong>    </p>
+<pre><code>&gt;&gt;&gt;list(range(1,6))
+[1, 2, 3, 4, 5]    
+</code></pre><p><strong>比如要生成一个list[1, 4, 9, 16, 25,…,100 ]</strong> </p>
+<pre><code>&gt;&gt;&gt;[x*x for x in range(1.101)]    
+[1, 4, 9, 16, 25,...,100 ]    
+</code></pre><p><strong>列表生成式也可以用两个变量生成list</strong>    </p>
+<pre><code>&gt;&gt;&gt; d = {&apos;x&apos;: &apos;A&apos;, &apos;y&apos;: &apos;B&apos;, &apos;z&apos;: &apos;C&apos; }    
+&gt;&gt;&gt; [k + &apos;=&apos; + v for k, v in d.items()]    
+[&apos;y=B&apos;, &apos;x=A&apos;, &apos;z=C&apos;]    
+</code></pre><p><strong>一个有趣的操作</strong><br><em>把list中所有的字符串变成小写</em>     </p>
+<pre><code>&gt;&gt;&gt; L = [&apos;Hello&apos;, &apos;World&apos;, &apos;IBM&apos;, &apos;Apple&apos;]    
+&gt;&gt;&gt; [s.lower() for s in L]    
+[&apos;hello&apos;, &apos;world&apos;, &apos;ibm&apos;, &apos;apple&apos;]    
+</code></pre><p><strong>通过列表生成式，可以快速生成一个list</strong>    </p>
+<h2 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h2><p><strong>什么是生成器？只要把一个列表生成式的[]改成（）就创建了一个生成器</strong>    </p>
+<p>比如    </p>
+<pre><code>&gt;&gt;&gt; L = [x * x for x in range(10)]    
+&gt;&gt;&gt; L    
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]    
+&gt;&gt;&gt; g = (x * x for x in range(10))    
+&gt;&gt;&gt; g    
+&lt;generator object &lt;genexpr&gt; at 0x1022ef630&gt;    
+</code></pre><p><strong>那么我们要怎样操作才能得到生成器中的每一个元素呢？</strong><br><em>使用next()函数</em>    </p>
+<pre><code>&gt;&gt;&gt; next(g)    
+0    
+&gt;&gt;&gt; next(g)     
+1    
+&gt;&gt;&gt; next(g)     
+4     
+...    
+&gt;&gt;&gt; next(g)    
+81    
+&gt;&gt;&gt; next(g)     
+Traceback (most recent call last):    
+   File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;    
+StopIteration
+</code></pre><p> <strong>由此我们知道，generator保存的是算法，每次调用next(g)，就计算出g的下一个元素的值，直到计算到最后一个元素，没有更多的元素时，抛出StopIteration的错误。</strong>    </p>
+<p><strong>当然我们依然可以用迭代的方法来更方便的获得这些返回值</strong>    </p>
+<pre><code>&gt;&gt;&gt; g = (x * x for x in range(10))   
+&gt;&gt;&gt; for n in g    
+        print(n)    
+0    
+1    
+...    
+81    
+</code></pre><h2 id="把一个函数改成下边的生成器"><a href="#把一个函数改成下边的生成器" class="headerlink" title="把一个函数改成下边的生成器"></a>把一个函数改成下边的生成器</h2><pre><code>def odd():    
+    print(&apos;step 1&apos;)   
+    yield 1    
+    print(&apos;step 2&apos;)   
+     yield(3)   
+</code></pre><p><strong>调用</strong>  </p>
+<pre><code>&gt;&gt;&gt; o=odd()   
+&gt;&gt;&gt;next(o)    
+step 1    
+1    
+&gt;&gt;&gt;next(o)    
+step 2    
+2    
+...    
+</code></pre><h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><p><strong>判断一个对象是否是Iterable对象</strong>    </p>
+<pre><code>&gt;&gt;&gt; from collections import Iterable    
+&gt;&gt;&gt; isinstance([], Iterable)    
+True    
+&gt;&gt;&gt; isinstance({}, Iterable)    
+True    
+&gt;&gt;&gt; isinstance(&apos;abc&apos;, Iterable)    
+True    
+&gt;&gt;&gt; isinstance((x for x in range(10)), Iterable)     
+True    
+&gt;&gt;&gt; isinstance(100, Iterable)    
+False    
+</code></pre><p><strong>判断一个对象是否是Iterator对象</strong>    </p>
+<pre><code>&gt;&gt;&gt; from collections import Iterator    
+&gt;&gt;&gt; isinstance((x for x in range(10)), Iterator)    
+True    
+&gt;&gt;&gt; isinstance([], Iterator)   
+False     
+&gt;&gt;&gt; isinstance({}, Iterator)    
+False    
+&gt;&gt;&gt; isinstance(&apos;abc&apos;, Iterator)    
+False     
+</code></pre><p><strong>凡是可作用于for循环的对象都是Iterable类型</strong><br><strong>凡是可作用于next()函数的对象都是Iterator类型，它们表示一个惰性计算的序列</strong>    </p>
+
+    
+  </div>
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul class="theme.donation.items.length">
+        
+          <li class="item">
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2017/07/07/python编码规范/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2017/07/09/更优雅的Python/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://yoursite.com/2017/07/07/python高级特性/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+    
+
+    
+	
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

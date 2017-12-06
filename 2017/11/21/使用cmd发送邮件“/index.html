@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-”flask-email">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用cmd发送邮件 | stylem</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="forsigner,前端,设计,Hexo主题,前端开发,用户体验,设计,frontend,design,nodejs,JavaScript" />
+  
+
+  <meta name="description" content="刚开始准备直接加上路由用flask-email发送邮件，看了好多次都没有成功，然后感觉有个事情一直在脑海里回旋… 今天看教程，又从前边开始看，开始学习用cmd发送邮件，记录一下吧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用cmd发送邮件">
+<meta property="og:url" content="http://yoursite.com/2017/11/21/使用cmd发送邮件“/index.html">
+<meta property="og:site_name" content="stylem">
+<meta property="og:description" content="刚开始准备直接加上路由用flask-email发送邮件，看了好多次都没有成功，然后感觉有个事情一直在脑海里回旋… 今天看教程，又从前边开始看，开始学习用cmd发送邮件，记录一下吧">
+<meta property="og:updated_time" content="2017-11-21T13:56:34.946Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用cmd发送邮件">
+<meta name="twitter:description" content="刚开始准备直接加上路由用flask-email发送邮件，看了好多次都没有成功，然后感觉有个事情一直在脑海里回旋… 今天看教程，又从前边开始看，开始学习用cmd发送邮件，记录一下吧">
+
+  
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#刚开始准备直接加上路由用flask-email发送邮件，看了好多次都没有成功，然后感觉有个事情一直在脑海里回旋…-今天看教程，又从前边开始看，开始学习用cmd发送邮件，记录一下吧"><span class="toc-text">刚开始准备直接加上路由用flask-email发送邮件，看了好多次都没有成功，然后感觉有个事情一直在脑海里回旋… 今天看教程，又从前边开始看，开始学习用cmd发送邮件，记录一下吧</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="”flask-email-使用cmd发送邮件“" class="article article-type-”flask-email" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">使用cmd发送邮件</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.11.21</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>stylem</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.forsigner.com/2017/11/21/使用cmd发送邮件“/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h3 id="刚开始准备直接加上路由用flask-email发送邮件，看了好多次都没有成功，然后感觉有个事情一直在脑海里回旋…-今天看教程，又从前边开始看，开始学习用cmd发送邮件，记录一下吧"><a href="#刚开始准备直接加上路由用flask-email发送邮件，看了好多次都没有成功，然后感觉有个事情一直在脑海里回旋…-今天看教程，又从前边开始看，开始学习用cmd发送邮件，记录一下吧" class="headerlink" title="刚开始准备直接加上路由用flask-email发送邮件，看了好多次都没有成功，然后感觉有个事情一直在脑海里回旋… 今天看教程，又从前边开始看，开始学习用cmd发送邮件，记录一下吧"></a>刚开始准备直接加上路由用flask-email发送邮件，看了好多次都没有成功，然后感觉有个事情一直在脑海里回旋… 今天看教程，又从前边开始看，开始学习用cmd发送邮件，记录一下吧</h3><a id="more"></a>     
+<p><strong>first</strong>—<br>Flask-Mail连接到简单邮件传输协议（SMTP），并且把邮件交给这个服务器发送。连接到外部SMTP服务器，需要对其进行配置<br>        from flask.ext.mail import Mail<br>        app.config[‘MAIL_SERVER’] = ‘smtp.qq.com’<br>        app.config[‘MAIL_PORT’] = 465<br>        app.config[‘MAIL_USE_SSL’] = True<br>        app.config[‘MAIL_USERNAME’] = ‘xxxx@qq.com’<br>        app.config[‘MAIL_PASSWORD’] = ‘<strong><strong><strong><em>**</em></strong></strong></strong>‘<br>        app.config[‘MAIL_DEFAULT_SENDER’]=’xxxx@qq.com’    </p>
+<p>这部分要注意的点有：<br>    app.config[‘MAIL_USE_SSL’] = True  SSL要设置为TRUE模式<br>    ‘MAIL_USERNAME’：这个是你邮箱号 ‘MAIL_PASSWORD’：这个是你通过发送短信后获得的授权码    </p>
+<pre><code>关于发送短信是在自己的邮箱上设置开启SMTP    
+</code></pre><p><strong>second</strong>    </p>
+<pre><code>&gt;&gt;&gt; import os
+&gt;&gt;&gt; os.environ.get(&apos;MAIL_PASSWORD&apos;)
+&apos;pbxoxpsadyeqdegg&apos;
+&gt;&gt;&gt; from flask.ext.mail import Message
+&gt;&gt;&gt; from mi import mail
+&gt;&gt;&gt; msg = Message(&apos;test subject&apos;, sender=&apos;1808240625@qq.com&apos;,recipients=[&apos;1808240625@qq.com&apos;])
+&gt;&gt;&gt; msg.body = &apos;text body&apos;
+&gt;&gt;&gt; msg.html = &apos;&lt;b&gt;HTML&lt;/b&gt; body&apos;
+&gt;&gt;&gt; with app.app_context():
+...    mail.send(msg)
+...
+&gt;&gt;&gt;     
+</code></pre><p>这里要注意的点是：<br>    配置中的MAIL-USERNAME MAIL-PASSWORD要加在环境变量中去，其中PASSWORD也就是授权码，要注意的是！！！！！–》授权码中的16位中间没有空格！！！    </p>
+<p>这样就可以发送了…</p>
+
+    
+  </div>
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul class="theme.donation.items.length">
+        
+          <li class="item">
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2017/11/08/http协议随手记/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2017/12/06/hexo主题修改/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-”flask-email">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://yoursite.com/2017/11/21/使用cmd发送邮件“/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+    
+
+    
+	
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
