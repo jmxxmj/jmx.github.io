@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>用flask写一个搜索引擎 | stylem</title>
+  <title>flask连接mysql数据库 | stylem</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,16 +15,16 @@
     <meta name="keywords" content="forsigner,前端,设计,Hexo主题,前端开发,用户体验,设计,frontend,design,nodejs,JavaScript" />
   
 
-  <meta name="description" content="写这个简陋的搜索引擎主要是能让我对flask框架有一定的认识，所以我把它记录下来     一个.py主文件     # -*- coding: utf-8 -*- from flask import Flask from flask import render_template from flask import request import urllib.request from flask_b">
+  <meta name="description" content="1、先创建一个数据库，通过命令行查看此数据库时候可以看到是空的表格结构2、添加配置文件 在config.py中加入配置命令">
 <meta property="og:type" content="article">
-<meta property="og:title" content="用flask写一个搜索引擎">
-<meta property="og:url" content="http://yoursite.com/2017/09/21/用flask写一个搜索引擎/index.html">
+<meta property="og:title" content="flask连接mysql数据库">
+<meta property="og:url" content="http://yoursite.com/2017/12/20/flask连接mysql数据库/index.html">
 <meta property="og:site_name" content="stylem">
-<meta property="og:description" content="写这个简陋的搜索引擎主要是能让我对flask框架有一定的认识，所以我把它记录下来     一个.py主文件     # -*- coding: utf-8 -*- from flask import Flask from flask import render_template from flask import request import urllib.request from flask_b">
-<meta property="og:updated_time" content="2017-09-21T12:03:54.944Z">
+<meta property="og:description" content="1、先创建一个数据库，通过命令行查看此数据库时候可以看到是空的表格结构2、添加配置文件 在config.py中加入配置命令">
+<meta property="og:updated_time" content="2017-12-20T08:11:59.367Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="用flask写一个搜索引擎">
-<meta name="twitter:description" content="写这个简陋的搜索引擎主要是能让我对flask框架有一定的认识，所以我把它记录下来     一个.py主文件     # -*- coding: utf-8 -*- from flask import Flask from flask import render_template from flask import request import urllib.request from flask_b">
+<meta name="twitter:title" content="flask连接mysql数据库">
+<meta name="twitter:description" content="1、先创建一个数据库，通过命令行查看此数据库时候可以看到是空的表格结构2、添加配置文件 在config.py中加入配置命令">
 
   
 
@@ -183,20 +183,20 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">Posts List</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#重要的函数实现："><span class="toc-text">重要的函数实现：</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、先创建一个数据库，通过命令行查看此数据库时候可以看到是空的表格结构"><span class="toc-text">1、先创建一个数据库，通过命令行查看此数据库时候可以看到是空的表格结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、添加配置文件-在config-py中加入配置命令"><span class="toc-text">2、添加配置文件 在config.py中加入配置命令    </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-用python写入你要创建的模型-使用sqlalchemy-的ORM模型可以简单的操作数据库-创建模型的过程就相当于mysql数据库创建表结构的过程"><span class="toc-text">3.用python写入你要创建的模型 使用sqlalchemy 的ORM模型可以简单的操作数据库 创建模型的过程就相当于mysql数据库创建表结构的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在写好的模型下边加上db-create-all-将结构映射到数据库中"><span class="toc-text">在写好的模型下边加上db.create_all()将结构映射到数据库中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#到现在你就已经连接上mysql数据库了，然后你就可以用sql基本语句或者ORM语句创建对象了"><span class="toc-text">到现在你就已经连接上mysql数据库了，然后你就可以用sql基本语句或者ORM语句创建对象了</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-用flask写一个搜索引擎" class="article article-type-post" itemprop="blogPost">
+   <article id="post-flask连接mysql数据库" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">用flask写一个搜索引擎</h1>
+    <h1 class="post-title">flask连接mysql数据库</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2017.09.21</span>
+        <span>2017.12.20</span>
       </span>
 
       
@@ -212,7 +212,7 @@
       
         <span>
           <i class="icon-comment"></i>
-          <a href="http://www.forsigner.com/2017/09/21/用flask写一个搜索引擎/#disqus_thread"></a>
+          <a href="http://www.forsigner.com/2017/12/20/flask连接mysql数据库/#disqus_thread"></a>
         </span>
       
 
@@ -231,83 +231,26 @@
 
   <div class="article-content">
     
-      <p><strong>写这个简陋的搜索引擎主要是能让我对flask框架有一定的认识，所以我把它记录下来</strong>    </p>
-<p>一个.py主文件    </p>
-<pre><code># -*- coding: utf-8 -*-
-from flask import Flask
-from flask import render_template
-from flask import request
-import urllib.request
-from flask_bootstrap import Bootstrap
-app=Flask(__name__)
-</code></pre><a id="more"></a>
-<pre><code>bootstrap=Bootstrap(app)
- #name为当前的主文件名
-
-def getHtml(wd,pn):
-    req=urllib.request.Request(&apos;https://www.baidu.com/s?wd=%s&amp;pn=%s&apos; %(wd,pn))
-    req.add_header(&apos;User-Agent&apos;,&apos;Mozilla/5.0 (Windows NT 10.0; WOW64; rv:55.0) Gecko/20100101 Firefox/55.0&apos;)
-    return urllib.request.urlopen(req).read()
-
-#装饰器
-@app.route(&apos;/&apos;)#定义路由
-def index():
-    return render_template(&apos;querry.html&apos;)
-
-@app.route(&apos;/s&apos;)
-def search():
-    if request.method==&apos;GET&apos;:
-        wd=request.args.get(&apos;wd&apos;)
-        wd=urllib.request.quote(wd.encode(&apos;utf-8&apos;))
-        pn = request.args.get(&apos;pn&apos;)
-        return getHtml(wd,pn)
-    else:
-        return None
-
-if __name__==&apos;__main__&apos;:
-    app.debug=True
-    app.run()
-</code></pre><p>一个template文件夹下的.html文件     </p>
-<pre><code>&lt;h1&gt;一个搜索引擎的页面&lt;/h1&gt;
-
-&lt;html&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;title&gt;搜索界面&lt;/title&gt;
-&lt;/head&gt;
-
-&lt;body bgcolor=&quot;#C0C0C0&quot;&gt;
-&lt;form action=&quot;/s&quot; method=&quot;get&quot;&gt;
-    &lt;input type=&quot;text&quot; class=&quot;txt&quot; name=&quot;wd&quot;  id=&quot;txt&quot;/&gt;
-    &lt;button type=&quot;button&quot; class=&quot;btn btn-success&quot;&gt;百度一下&lt;/button&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p><strong>这个html文件就是展现出来的搜索页面，如果用到css、bootstrap、js等就会有一个吸引人的页面</strong>     </p>
-<h3 id="重要的函数实现："><a href="#重要的函数实现：" class="headerlink" title="重要的函数实现："></a>重要的函数实现：</h3><pre><code> # 搜索函数
-@app.route(&apos;/s&apos;)
-def search():
-    if request.method==&apos;GET&apos;:
-        wd=request.args.get(&apos;wd&apos;) #因为你搜索的关键词都在wd参数中，所以用args解析得到的wd就是你搜索的词
-
-        wd=urllib.request.quote(wd.encode(&apos;utf-8&apos;))#编码成utf-8，输入搜索词汇可以输入中文
-
-        pn = request.args.get(&apos;pn&apos;)#这里的pn参数控制搜索的页数，不加pn的话只能搜索到第一页内容
-
-        return getHtml(wd,pn)
-    else:
-        return None
+      <h3 id="1、先创建一个数据库，通过命令行查看此数据库时候可以看到是空的表格结构"><a href="#1、先创建一个数据库，通过命令行查看此数据库时候可以看到是空的表格结构" class="headerlink" title="1、先创建一个数据库，通过命令行查看此数据库时候可以看到是空的表格结构"></a>1、先创建一个数据库，通过命令行查看此数据库时候可以看到是空的表格结构</h3><h3 id="2、添加配置文件-在config-py中加入配置命令"><a href="#2、添加配置文件-在config-py中加入配置命令" class="headerlink" title="2、添加配置文件 在config.py中加入配置命令    "></a>2、添加配置文件 在config.py中加入配置命令    <a id="more"></a></h3><pre><code>HOST = &apos;127.0.0.1&apos;
+PORT     = &apos;3306&apos;（默认3306端口）
+DATABASE = &apos;shangchuan&apos;（shangchuan为我要连接的数据库的名字）
+USERNAME = &apos;root&apos;（root权限登录）
+PASSWORD = &apos;******&apos;（密码）
+DIALECT = &apos;mysql&apos;
+DRIVER = &apos;mysqldb&apos;
+SQLALCHEMY_DATABASE_URI = &quot;{}+{}://{}:{}@{}:{}/{}?charset=utf8&quot;.format(DIALECT,DRIVER,USERNAME,PASSWORD,HOST,PORT,DATABASE)
 
 
-
- # 获取访问页面     
-
-        def getHtml(wd,pn):
-            req=urllib.request.Request(&apos;https://www.baidu.com/s?wd=%s&amp;pn=%s&apos; %(wd,pn))#得到两个参数之后要把相应的url读取出来
-
-            req.add_header(&apos;User-Agent&apos;,&apos;Mozilla/5.0 (Windows NT 10.0; WOW64; rv:55.0) Gecko/20100101 Firefox/55.0&apos;)#模拟浏览器访问，所以增加一个header
-
-            return urllib.request.urlopen(req).read()    
-</code></pre>
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+</code></pre><h3 id="3-用python写入你要创建的模型-使用sqlalchemy-的ORM模型可以简单的操作数据库-创建模型的过程就相当于mysql数据库创建表结构的过程"><a href="#3-用python写入你要创建的模型-使用sqlalchemy-的ORM模型可以简单的操作数据库-创建模型的过程就相当于mysql数据库创建表结构的过程" class="headerlink" title="3.用python写入你要创建的模型 使用sqlalchemy 的ORM模型可以简单的操作数据库 创建模型的过程就相当于mysql数据库创建表结构的过程"></a>3.用python写入你要创建的模型 使用sqlalchemy 的ORM模型可以简单的操作数据库 创建模型的过程就相当于mysql数据库创建表结构的过程</h3><pre><code>class Image(db.Model):
+  id = db.Column(db.Integer(), primary_key=True,autoincrement=True)
+  url=db.Column(db.String(128))
+  def __init__(self,url) :
+      self.url=url
+  def __repr__(self) :
+      return &apos;&lt;Url %r&gt;&apos; %self.url
+</code></pre><h3 id="在写好的模型下边加上db-create-all-将结构映射到数据库中"><a href="#在写好的模型下边加上db-create-all-将结构映射到数据库中" class="headerlink" title="在写好的模型下边加上db.create_all()将结构映射到数据库中"></a>在写好的模型下边加上db.create_all()将结构映射到数据库中</h3><p>上边创建了一个模型  其实在数据库中创建了一个image表  表中有两个属性 分别是id 和  url        </p>
+<h3 id="到现在你就已经连接上mysql数据库了，然后你就可以用sql基本语句或者ORM语句创建对象了"><a href="#到现在你就已经连接上mysql数据库了，然后你就可以用sql基本语句或者ORM语句创建对象了" class="headerlink" title="到现在你就已经连接上mysql数据库了，然后你就可以用sql基本语句或者ORM语句创建对象了"></a>到现在你就已经连接上mysql数据库了，然后你就可以用sql基本语句或者ORM语句创建对象了</h3>
     
   </div>
 </article>
@@ -337,10 +280,10 @@ def search():
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2017/07/18/一个具有翻译功能的爬虫/">
+    <a class="show pull-left" href="/2017/12/06/hexo主题修改/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2017/10/25/实现登录、注销、增添文章“/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
@@ -465,7 +408,7 @@ def search():
   <script>
     var disqus_shortname = 'forsigner';
     
-    var disqus_url = 'http://yoursite.com/2017/09/21/用flask写一个搜索引擎/';
+    var disqus_url = 'http://yoursite.com/2017/12/20/flask连接mysql数据库/';
     
     (function(){
       var dsq = document.createElement('script');
